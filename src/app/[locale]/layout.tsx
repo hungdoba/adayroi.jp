@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props) {
     }),
     metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
     openGraph: {
-      siteName: 'Blog | K Ten',
+      siteName: process.env.NEXT_PUBLIC_WEBSITE_FULL_NAME,
       type: 'website',
       locale: locale,
     },
@@ -66,9 +66,9 @@ export async function generateMetadata({ params }: Props) {
         'application/rss+xml': `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}/rss.xml`,
       },
     },
-    applicationName: 'Blog | K Ten',
+    applicationName: process.env.NEXT_PUBLIC_WEBSITE_NAME,
     appleWebApp: {
-      title: 'Blog | K Ten',
+      title: process.env.NEXT_PUBLIC_WEBSITE_NAME,
       statusBarStyle: 'default',
       capable: true,
     },
@@ -89,12 +89,12 @@ export async function generateMetadata({ params }: Props) {
           type: 'image/x-icon',
         },
         {
-          url: '/favicon-16x16.png',
+          url: '/favicon/favicon-16x16.png',
           sizes: '16x16',
           type: 'image/png',
         },
         {
-          url: '/favicon-32x32.png',
+          url: '/favicon/favicon-32x32.png',
           sizes: '32x32',
           type: 'image/png',
         },
@@ -107,7 +107,7 @@ export async function generateMetadata({ params }: Props) {
       ],
       apple: [
         {
-          url: '/apple-touch-icon.png',
+          url: '/favicon/apple-touch-icon.png',
           sizes: '180x180',
           type: 'image/png',
         },

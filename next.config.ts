@@ -1,5 +1,5 @@
-import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
+import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 // import withBundleAnalyzer from "@next/bundle-analyzer";
 
 const withNextIntl = createNextIntlPlugin();
@@ -8,9 +8,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '**',
       },
     ],
   },
@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
     mdxRs: true,
     webpackMemoryOptimizations: true,
   },
+  productionBrowserSourceMaps: true,
   // bundlePagesRouterDependencies: true,
   // serverExternalPackages: ["easymde"],
 };
