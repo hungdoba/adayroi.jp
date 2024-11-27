@@ -14,11 +14,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    mdxRs: true,
-    webpackMemoryOptimizations: true,
-  },
-  productionBrowserSourceMaps: true,
+  // experimental: {
+  //   mdxRs: true,
+  //   webpackMemoryOptimizations: true,
+  // },
   // bundlePagesRouterDependencies: true,
   // serverExternalPackages: ["easymde"],
 };
