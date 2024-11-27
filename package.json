@@ -1,0 +1,59 @@
+{
+  "name": "adayroi.jp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "npx prisma generate && next build",
+    "postinstall": "prisma generate",
+    "start": "next start",
+    "lint": "next lint",
+    "find:unused": "next-unused"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "@tanstack/react-query": "^5.61.3",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/imagemin": "^9.0.0",
+    "@types/nodemailer": "^6.4.17",
+    "@types/rss": "^0.0.32",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "clsx": "^2.1.1",
+    "easymde": "^2.18.0",
+    "imagemin": "^9.0.0",
+    "next": "15.0.3",
+    "next-auth": "^4.24.10",
+    "next-intl": "^3.25.3",
+    "next-mdx-remote": "^5.0.0",
+    "next-themes": "^0.4.3",
+    "nodemailer": "^6.9.16",
+    "prisma": "^5.21.1",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.3.0",
+    "react-intersection-observer": "^9.13.1",
+    "react-simplemde-editor": "^5.2.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
+    "rss": "^1.2.2",
+    "tailwind-merge": "^2.5.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "eslint": "^9.15.0",
+    "eslint-config-next": "15.0.3",
+    "next-unused": "^0.0.6",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.7.2"
+  },
+  "resolutions": {
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+  }
+}
