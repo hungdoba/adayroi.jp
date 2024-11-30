@@ -6,7 +6,10 @@ import Mondai10 from '@/components/jlpt/read/Mondai10';
 import Mondai11 from '@/components/jlpt/read/Mondai11';
 import Mondai12 from '@/components/jlpt/read/Mondai12';
 import Mondai13 from '@/components/jlpt/read/Mondai13';
-import { getJLPTReadFullDetailCache } from '@/actions/jlpt';
+import {
+  getJLPTReadFullDetail,
+  getJLPTReadFullDetailCache,
+} from '@/actions/jlpt';
 import Mondai from '@/components/jlpt/read/Mondai';
 import { MondaiData } from '@/types/Jlpt';
 import { getTranslations } from 'next-intl/server';
@@ -20,7 +23,7 @@ export default async function JLPTDetail({ params }: Props) {
   const t = await getTranslations('JlptPage');
   const isAdmin = (await adminInfo()) != false;
   const { year, month } = await params;
-  const mondaiData = await getJLPTReadFullDetailCache(year, month);
+  const mondaiData = await getJLPTReadFullDetail(year, month);
 
   function getMondai(mondaiNumber: number): MondaiData {
     const mondai = mondaiData.mondai.filter(

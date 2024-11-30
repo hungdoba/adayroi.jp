@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import AnswerOption from '../AnswerOption';
 import { jlpt_question } from '@prisma/client';
+import Editor from '@/components/common/Editor';
+import { updateQuestionContent, updateQuestionOption } from '@/actions/jlpt';
+import toast from 'react-hot-toast';
 
 interface Props {
   question: jlpt_question;
@@ -66,19 +69,36 @@ export default function Answer({
     handleResize();
   }, [maxTextLength]);
 
+  async function handleSave(content: string, optionNumber: number) {
+    const formData = new FormData();
+    formData.append('id', String(question.id));
+    formData.append('no', optionNumber.toString());
+    formData.append('content', content);
+
+    const result = await updateQuestionOption(formData);
+    toast.success('Option updated');
+    // setContentUpdated(result);
+  }
+
   return (
     <div className={`mb-4 ml-4 grid ${cols ?? 'grid-cols-2 md:grid-cols-4'}`}>
       {[1, 2, 3, 4].map((optionNumber) => (
-        <AnswerOption
+        <Editor
           key={optionNumber}
-          optionNumber={optionNumber}
-          optionText={getOptionText(question, optionNumber)}
-          isCorrectAnswer={question.answer === optionNumber}
-          showHint={hintShowed}
-          showExplain={showExplain}
-          selected={selectedOption === optionNumber}
-          select={() => selectOption(optionNumber)}
+          content={getOptionText(question, optionNumber) ?? ''}
+          onSave={(content) => handleSave(content, optionNumber)}
         />
+
+        // <AnswerOption
+        //   key={optionNumber}
+        //   optionNumber={optionNumber}
+        //   optionText={getOptionText(question, optionNumber)}
+        //   isCorrectAnswer={question.answer === optionNumber}
+        //   showHint={hintShowed}
+        //   showExplain={showExplain}
+        //   selected={selectedOption === optionNumber}
+        //   select={() => selectOption(optionNumber)}
+        // />
       ))}
     </div>
   );

@@ -39,7 +39,7 @@ async function getJLPTListenFullDetail(
 }
 
 // Has cache function
-async function getJLPTReadFullDetail(
+export async function getJLPTReadFullDetail(
   year: string,
   month: string
 ): Promise<MondaiData> {
@@ -120,6 +120,51 @@ export async function updateMondaiNote(formData: FormData): Promise<boolean> {
       },
       data: {
         note: note,
+      },
+    });
+    return true;
+  } catch (error) {
+    console.error('Error updating question explanation:', error);
+    return false;
+  }
+}
+
+export async function updateQuestionContent(
+  formData: FormData
+): Promise<boolean> {
+  const id = formData.get('id') as string;
+  const question_content = formData.get('content') as string;
+
+  try {
+    await prisma.jlpt_question.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        question_content: question_content,
+      },
+    });
+    return true;
+  } catch (error) {
+    console.error('Error updating question explanation:', error);
+    return false;
+  }
+}
+
+export async function updateQuestionOption(
+  formData: FormData
+): Promise<boolean> {
+  const id = formData.get('id') as string;
+  const option_no = formData.get('no') as string;
+  const content = formData.get('content') as string;
+
+  try {
+    await prisma.jlpt_question.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        [`option_${option_no}`]: content,
       },
     });
     return true;

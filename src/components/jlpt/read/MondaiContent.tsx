@@ -1,9 +1,11 @@
-"use client";
-import { jlpt_mondai } from "@prisma/client";
-import { useState } from "react";
-import { FaRegLightbulb } from "react-icons/fa";
-import EditableText from "../../common/EditableText";
-import { updateMondaiContent, updateMondaiNote } from "@/actions/jlpt";
+'use client';
+import { jlpt_mondai } from '@prisma/client';
+import { useState } from 'react';
+import { FaRegLightbulb } from 'react-icons/fa';
+import EditableText from '../../common/EditableText';
+import { updateMondaiContent, updateMondaiNote } from '@/actions/jlpt';
+import Editor from '@/components/common/Editor';
+import toast from 'react-hot-toast';
 
 interface Props {
   mondai: jlpt_mondai;
@@ -12,7 +14,7 @@ interface Props {
 
 export default function MondaiContent({ mondai, isAdmin }: Props) {
   const [mondaiContent, setMondaiContent] = useState(mondai.mondai_content);
-  const [mondaiTranslate, setMondaiTranslate] = useState(mondai.note ?? "");
+  const [mondaiTranslate, setMondaiTranslate] = useState(mondai.note ?? '');
 
   const [contentUpdated, setContentUpdated] = useState<boolean | null>(null);
   const [noteUpdated, setNoteUpdated] = useState<true | false | null>(null);
@@ -25,8 +27,8 @@ export default function MondaiContent({ mondai, isAdmin }: Props) {
     e.preventDefault();
     setContentUpdated(null);
     const formData = new FormData();
-    formData.append("id", String(mondai.id));
-    formData.append("mondai_content", mondaiContent);
+    formData.append('id', String(mondai.id));
+    formData.append('mondai_content', mondaiContent);
 
     const result = await updateMondaiContent(formData);
     setContentUpdated(result);
@@ -38,12 +40,20 @@ export default function MondaiContent({ mondai, isAdmin }: Props) {
     e.preventDefault();
     setNoteUpdated(null);
     const formData = new FormData();
-    formData.append("id", String(mondai.id));
-    formData.append("note", mondaiTranslate);
+    formData.append('id', String(mondai.id));
+    formData.append('note', mondaiTranslate);
 
     const result = await updateMondaiNote(formData);
     setNoteUpdated(result);
   };
+
+  async function handleSave(content: string) {
+    const formData = new FormData();
+    formData.append('id', String(mondai.id));
+    formData.append('mondai_content', content);
+    const result = await updateMondaiContent(formData);
+    if (result) toast.success('Mondai content updated');
+  }
 
   return (
     <div className="flex flex-col">
@@ -54,19 +64,20 @@ export default function MondaiContent({ mondai, isAdmin }: Props) {
         <FaRegLightbulb
           onClick={() => setShowHint(!showHint)}
           className={`w-4 h-4 ml-2 cursor-pointer ${
-            showHint ? "text-yellow-600" : ""
+            showHint ? 'text-yellow-600' : ''
           }`}
         />
       </div>
 
       {/* Mondai's question content */}
-      <EditableText
+      <Editor content={mondaiContent} onSave={handleSave} />
+      {/* <EditableText
         isAdmin={isAdmin}
         content={mondaiContent}
         setContent={(newContent) => setMondaiContent(newContent)}
         handleSubmitChange={handleSubmitChangeContent}
         updated={contentUpdated}
-      />
+      /> */}
 
       {/* Mondai's question translate (note) */}
       {showHint && (

@@ -18,7 +18,7 @@ export default function Mondai({ mondai_number, data, isAdmin }: Props) {
       case 3:
         return '問題３　＿＿＿の言葉に意味が最も近いものを、１・２・３・４から一つ選びなさい。';
       case 4:
-        return '問題４　次の言葉の近い方として最もよいものを、１・２・３・４から一つ選びなさい。';
+        return '問題４　次の言葉の使い方として最もよいものを、１・２・３・４から一つ選びなさい。';
       case 5:
         return '問題５　次の文の（　　）に入れるのに最もよいものを、１・２・３・４から一つ選びなさい。';
       case 6:
