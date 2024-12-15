@@ -36,7 +36,7 @@ export default function Question({ question, hintShowed, showHint }: Props) {
           }}
         /> */}
       </div>
-      {/* <div className="flex flex-row">
+      <div className="flex flex-row">
         <Bookmark />
         <FaRegLightbulb
           onClick={showHint}
@@ -44,7 +44,7 @@ export default function Question({ question, hintShowed, showHint }: Props) {
             hintShowed ? 'text-yellow-600' : ''
           }`}
         />
-      </div> */}
+      </div>
     </div>
   );
 }
