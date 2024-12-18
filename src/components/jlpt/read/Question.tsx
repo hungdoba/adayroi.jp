@@ -1,9 +1,6 @@
-import Editor from '@/components/common/Editor';
 import Bookmark from '../../common/Bookmark';
 import { jlpt_question } from '@prisma/client';
 import { FaRegLightbulb } from 'react-icons/fa';
-import { updateQuestionContent } from '@/actions/jlpt';
-import toast from 'react-hot-toast';
 
 interface Props {
   question: jlpt_question;
@@ -12,16 +9,6 @@ interface Props {
 }
 
 export default function Question({ question, hintShowed, showHint }: Props) {
-  async function handleSave(content: string) {
-    const formData = new FormData();
-    formData.append('id', String(question.id));
-    formData.append('content', content);
-
-    const result = await updateQuestionContent(formData);
-    toast.success('Question content updated');
-    // setContentUpdated(result);
-  }
-
   return (
     <div className="flex flex-row justify-between mb-2 w-full">
       <div className="flex flex-row w-full">
@@ -29,14 +16,13 @@ export default function Question({ question, hintShowed, showHint }: Props) {
           {question.question_number}
         </h3>
 
-        <Editor onSave={handleSave} content={question.question_content!} />
-        {/* <h3
+        <h3
           dangerouslySetInnerHTML={{
             __html: question.question_content!,
           }}
-        /> */}
+        />
       </div>
-      {/* <div className="flex flex-row">
+      <div className="flex flex-row">
         <Bookmark />
         <FaRegLightbulb
           onClick={showHint}
@@ -44,7 +30,7 @@ export default function Question({ question, hintShowed, showHint }: Props) {
             hintShowed ? 'text-yellow-600' : ''
           }`}
         />
-      </div> */}
+      </div>
     </div>
   );
 }

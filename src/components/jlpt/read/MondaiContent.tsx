@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { FaRegLightbulb } from 'react-icons/fa';
 import EditableText from '../../common/EditableText';
 import { updateMondaiContent, updateMondaiNote } from '@/actions/jlpt';
-import Editor from '@/components/common/Editor';
-import toast from 'react-hot-toast';
 
 interface Props {
   mondai: jlpt_mondai;
@@ -47,14 +45,6 @@ export default function MondaiContent({ mondai, isAdmin }: Props) {
     setNoteUpdated(result);
   };
 
-  async function handleSave(content: string) {
-    const formData = new FormData();
-    formData.append('id', String(mondai.id));
-    formData.append('mondai_content', content);
-    const result = await updateMondaiContent(formData);
-    if (result) toast.success('Mondai content updated');
-  }
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-row justify-between items-center">
@@ -70,14 +60,13 @@ export default function MondaiContent({ mondai, isAdmin }: Props) {
       </div>
 
       {/* Mondai's question content */}
-      <Editor content={mondaiContent} onSave={handleSave} />
-      {/* <EditableText
+      <EditableText
         isAdmin={isAdmin}
         content={mondaiContent}
         setContent={(newContent) => setMondaiContent(newContent)}
         handleSubmitChange={handleSubmitChangeContent}
         updated={contentUpdated}
-      /> */}
+      />
 
       {/* Mondai's question translate (note) */}
       {showHint && (

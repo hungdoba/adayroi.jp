@@ -6,10 +6,7 @@ import Mondai10 from '@/components/jlpt/read/Mondai10';
 import Mondai11 from '@/components/jlpt/read/Mondai11';
 import Mondai12 from '@/components/jlpt/read/Mondai12';
 import Mondai13 from '@/components/jlpt/read/Mondai13';
-import {
-  getJLPTReadFullDetail,
-  getJLPTReadFullDetailCache,
-} from '@/actions/jlpt';
+import { getJLPTReadFullDetail } from '@/actions/jlpt';
 import Mondai from '@/components/jlpt/read/Mondai';
 import { MondaiData } from '@/types/Jlpt';
 import { getTranslations } from 'next-intl/server';
