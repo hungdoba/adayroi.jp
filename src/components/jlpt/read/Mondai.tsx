@@ -5,10 +5,9 @@ import { jlpt_question } from '@prisma/client';
 interface Props {
   mondai_number: number;
   data: MondaiData;
-  isAdmin: boolean;
 }
 
-export default function Mondai({ mondai_number, data, isAdmin }: Props) {
+export default function Mondai({ mondai_number, data }: Props) {
   const getHeaderText = (mondai: number): string => {
     switch (mondai) {
       case 1:
@@ -34,7 +33,7 @@ export default function Mondai({ mondai_number, data, isAdmin }: Props) {
         <div className="flex flex-col mb-4 md:mb-8 md:mt-8">
           <h2 className="mb-4">{getHeaderText(mondai_number)}</h2>
           {data.questions.map((data: jlpt_question) => {
-            return <QAE key={data.id} question={data} isAdmin={isAdmin} />;
+            return <QAE key={data.id} question={data} />;
           })}
         </div>
       </div>

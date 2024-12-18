@@ -9,10 +9,9 @@ import { jlpt_question } from '@prisma/client';
 
 interface Props {
   question: jlpt_question;
-  isAdmin: boolean;
 }
 
-export default function QAE({ question, isAdmin }: Props) {
+export default function QAE({ question }: Props) {
   const [hintShowed, setShowHint] = useState(false);
   const [showExplain, setShowExplain] = useState(false);
   const [selectedOption, setSelectedOption] = useState(0);
@@ -25,12 +24,17 @@ export default function QAE({ question, isAdmin }: Props) {
     setSelectedOption(value);
   }
 
+  function handleShowHint(): void {
+    setShowHint(!hintShowed);
+    setShowExplain(hintShowed ? false : showExplain);
+  }
+
   return (
     <div>
       <Question
         question={question}
         hintShowed={hintShowed}
-        showHint={() => setShowHint(!hintShowed)}
+        showHint={handleShowHint}
       />
       <Answer
         question={question}
@@ -39,13 +43,7 @@ export default function QAE({ question, isAdmin }: Props) {
         selectOption={(value: number) => handleSelectOption(value)}
         selectedOption={selectedOption}
       />
-      {showExplain && (
-        <Explain
-          question_id={question.id}
-          content={question.note}
-          isAdmin={isAdmin}
-        />
-      )}
+      {hintShowed && showExplain && <Explain content={question.note} />}
     </div>
   );
 }

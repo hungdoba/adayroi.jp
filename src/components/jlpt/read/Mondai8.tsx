@@ -7,16 +7,9 @@ interface Props {
   data2: MondaiData;
   data3: MondaiData;
   data4: MondaiData;
-  isAdmin: boolean;
 }
 
-export default function Mondai8({
-  data1,
-  data2,
-  data3,
-  data4,
-  isAdmin,
-}: Props) {
+export default function Mondai8({ data1, data2, data3, data4 }: Props) {
   return (
     <div className="container mx-auto w-full mt-4 md:max-w-5xl">
       <div className="mx-4 md:mx-8">
@@ -26,28 +19,28 @@ export default function Mondai8({
           </h2>
           {/* Q1 */}
           <div className="flex flex-col">
-            <MondaiContent isAdmin={isAdmin} mondai={data1.mondai[0]} />
-            <QAE question={data1.questions[0]} isAdmin={isAdmin} />
+            <MondaiContent mondai={data1.mondai[0]} />
+            <QAE question={data1.questions[0]} />
           </div>
 
           {/* Q2 */}
           <div className="flex flex-col">
-            <MondaiContent isAdmin={isAdmin} mondai={data2.mondai[0]} />
-            <QAE question={data2.questions[0]} isAdmin={isAdmin} />
+            <MondaiContent mondai={data2.mondai[0]} />
+            <QAE question={data2.questions[0]} />
           </div>
 
           {/* Q3 */}
           <div className="flex flex-col">
-            <MondaiContent isAdmin={isAdmin} mondai={data3.mondai[0]} />
-            <QAE question={data3.questions[0]} isAdmin={isAdmin} />
+            <MondaiContent mondai={data3.mondai[0]} />
+            <QAE question={data3.questions[0]} />
           </div>
 
           {/* Q4 */}
           {data4 && (
             <div>
               <div className="flex flex-col">
-                <MondaiContent isAdmin={isAdmin} mondai={data4.mondai[0]} />
-                <QAE question={data4.questions[0]} isAdmin={isAdmin} />
+                <MondaiContent mondai={data4.mondai[0]} />
+                <QAE question={data4.questions[0]} />
               </div>
             </div>
           )}

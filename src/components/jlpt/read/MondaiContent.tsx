@@ -1,49 +1,15 @@
 'use client';
-import { jlpt_mondai } from '@prisma/client';
 import { useState } from 'react';
+import { jlpt_mondai } from '@prisma/client';
 import { FaRegLightbulb } from 'react-icons/fa';
-import EditableText from '../../common/EditableText';
-import { updateMondaiContent, updateMondaiNote } from '@/actions/jlpt';
+import { AutosizeTextarea } from '@/components/ui/AutosizeTextarea';
 
 interface Props {
   mondai: jlpt_mondai;
-  isAdmin: boolean;
 }
 
-export default function MondaiContent({ mondai, isAdmin }: Props) {
-  const [mondaiContent, setMondaiContent] = useState(mondai.mondai_content);
-  const [mondaiTranslate, setMondaiTranslate] = useState(mondai.note ?? '');
-
-  const [contentUpdated, setContentUpdated] = useState<boolean | null>(null);
-  const [noteUpdated, setNoteUpdated] = useState<true | false | null>(null);
-
+export default function MondaiContent({ mondai }: Props) {
   const [showHint, setShowHint] = useState(false);
-
-  const handleSubmitChangeContent = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
-    setContentUpdated(null);
-    const formData = new FormData();
-    formData.append('id', String(mondai.id));
-    formData.append('mondai_content', mondaiContent);
-
-    const result = await updateMondaiContent(formData);
-    setContentUpdated(result);
-  };
-
-  const handleSubmitChangeNote = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
-    setNoteUpdated(null);
-    const formData = new FormData();
-    formData.append('id', String(mondai.id));
-    formData.append('note', mondaiTranslate);
-
-    const result = await updateMondaiNote(formData);
-    setNoteUpdated(result);
-  };
 
   return (
     <div className="flex flex-col">
@@ -60,24 +26,15 @@ export default function MondaiContent({ mondai, isAdmin }: Props) {
       </div>
 
       {/* Mondai's question content */}
-      <EditableText
-        isAdmin={isAdmin}
-        content={mondaiContent}
-        setContent={(newContent) => setMondaiContent(newContent)}
-        handleSubmitChange={handleSubmitChangeContent}
-        updated={contentUpdated}
+      <div
+        className="my-4 whitespace-pre-wrap"
+        dangerouslySetInnerHTML={{ __html: mondai.mondai_content }}
       />
 
       {/* Mondai's question translate (note) */}
       {showHint && (
         <div className="rounded border text-gray-400 border-gray-200 dark:border-gray-600 p-4 my-4">
-          <EditableText
-            isAdmin={isAdmin}
-            content={mondaiTranslate}
-            setContent={(newContent) => setMondaiTranslate(newContent)}
-            handleSubmitChange={handleSubmitChangeNote}
-            updated={noteUpdated}
-          />
+          <AutosizeTextarea readOnly value={mondai.mondai_content} />
         </div>
       )}
     </div>
