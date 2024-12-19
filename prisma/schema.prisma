@@ -25,15 +25,16 @@ model jlpt_chokai {
 }
 
 model jlpt_mondai {
+  id             Int    @id(map: "jlpt_mondai_new_pkey")
   year           Int
   month          Int
   mondai_number  Int
   mondai_content String
-  note           String?
-  id             Int     @id @default(autoincrement())
+  note           String
 }
 
 model jlpt_question {
+  id               Int     @id @default(autoincrement())
   year             Int
   month            Int
   mondai_number    Int
@@ -44,11 +45,9 @@ model jlpt_question {
   option_3         String?
   option_4         String?
   answer           Int
-  explanation      String?
   note             String?
-  id               Int     @id @default(autoincrement())
 
-  @@unique([year, month, question_number], map: "unique")
+  @@unique([year, month, question_number], map: "unique_question")
 }
 
 model message {
@@ -75,9 +74,9 @@ model post {
   header_image     String
   created_at       DateTime           @default(now()) @db.Timestamptz(6)
   updated_at       DateTime           @default(now()) @db.Timestamptz(6)
-  active           Boolean
-  change_freq      String
-  priority         Int                @db.SmallInt
+  active           Boolean?
+  change_freq      String             @default("yearly")
+  priority         Int                @default(8) @db.SmallInt
   post_translation post_translation[]
 }
 
