@@ -26,7 +26,7 @@ export default function QAE({ question, isAdmin }: Props) {
   }
 
   return (
-    <div>
+    <div id={question.question_number.toString()} className="scroll-m-4">
       <Question
         question={question}
         hintShowed={hintShowed}
