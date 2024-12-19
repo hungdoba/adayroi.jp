@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import AnswerOption from "../AnswerOption";
-import { jlpt_chokai, jlpt_question } from "@prisma/client";
-import { cn } from "@/utils/cn";
+import { useMemo } from 'react';
+import AnswerOption from '../AnswerOption';
+import { jlpt_chokai, jlpt_question } from '@prisma/client';
+import { cn } from '@/utils/cn';
 
 interface Props {
   question: jlpt_question | jlpt_chokai;
@@ -12,6 +12,16 @@ interface Props {
   hintShowed: boolean;
   showExplain: () => void;
 }
+
+const getMaxTextLength = (question: jlpt_question | jlpt_chokai): number => {
+  const lengths = [
+    question.option_1,
+    question.option_2,
+    question.option_3,
+    question.option_4,
+  ].map((text) => text?.length ?? 0);
+  return Math.max(...lengths);
+};
 
 const getOptionText = (
   question: jlpt_question | jlpt_chokai,
@@ -31,16 +41,6 @@ const getOptionText = (
   }
 };
 
-const getMaxTextLength = (question: jlpt_question | jlpt_chokai): number => {
-  const lengths = [
-    question.option_1,
-    question.option_2,
-    question.option_3,
-    question.option_4,
-  ].map((text) => text?.length ?? 0);
-  return Math.max(...lengths);
-};
-
 export default function Answer({
   question,
   hintShowed,
@@ -48,32 +48,30 @@ export default function Answer({
   selectedOption,
   showExplain,
 }: Props) {
-  const [cols, setCols] = useState<string | undefined>();
-  const maxTextLength = getMaxTextLength(question);
+  const maxTextLength = useMemo(() => getMaxTextLength(question), [question]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (maxTextLength < 6) {
-        setCols("grid-cols-2 md:grid-cols-4");
-      } else if (maxTextLength < 10) {
-        setCols("grid-cols-1 md:grid-cols-4");
-      } else if (maxTextLength < 25) {
-        setCols("grid-cols-1 md:grid-cols-2");
-      } else {
-        setCols("grid-cols-1");
-      }
-    };
-
-    handleResize();
+  const cols = useMemo(() => {
+    if (maxTextLength < 6) {
+      return 'grid-cols-2 md:grid-cols-4';
+    } else if (maxTextLength < 10) {
+      return 'grid-cols-1 md:grid-cols-4';
+    } else if (maxTextLength < 25) {
+      return 'grid-cols-1 md:grid-cols-2';
+    } else {
+      return 'grid-cols-1';
+    }
   }, [maxTextLength]);
 
   return (
-    <div className={cn("mb-4 ml-4 grid", cols && "grid-cols-2 md:grid-cols-4")}>
+    <div className={cn('mb-4 ml-4 grid', cols)}>
       {[1, 2, 3, 4].map((optionNumber) => (
         <AnswerOption
           key={optionNumber}
           optionNumber={optionNumber}
-          optionText={getOptionText(question, optionNumber)}
+          optionText={useMemo(
+            () => getOptionText(question, optionNumber),
+            [question, optionNumber]
+          )}
           isCorrectAnswer={question.answer === optionNumber}
           showHint={hintShowed}
           showExplain={showExplain}

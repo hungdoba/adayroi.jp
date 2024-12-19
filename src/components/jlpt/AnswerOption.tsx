@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { cn } from "@/utils/cn";
-import { useState } from "react";
-import { FaRegQuestionCircle } from "react-icons/fa";
+import { cn } from '@/utils/cn';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import { useMemo } from 'react';
 
 interface Props {
   optionNumber: number;
@@ -25,27 +25,30 @@ export default function AnswerOption({
   select,
   className,
 }: Props) {
-  const [showAnswer, setShowAnswer] = useState(false);
+  const iconVisibilityClass = useMemo(() => {
+    return isCorrectAnswer && showHint ? 'block' : 'collapse';
+  }, [isCorrectAnswer, showHint]);
 
-  const iconVisibilityClass =
-    isCorrectAnswer && showHint ? "block" : "collapse";
-
-  const borderColorClass = selected
-    ? showHint
-      ? isCorrectAnswer
-        ? "border-green-600" // Selected, showHint, and correct answer
-        : "border-red-600" // Selected, showHint, but incorrect answer
-      : "border-blue-400" // Selected, but not showing hint
-    : showHint && isCorrectAnswer
-    ? "border-green-600" // Not selected, but showHint and correct answer
-    : "border-transparent"; // Not selected and not showing hint or incorrect answer
+  const borderColorClass = useMemo(() => {
+    if (selected) {
+      if (showHint) {
+        return isCorrectAnswer ? 'border-green-600' : 'border-red-600';
+      } else {
+        return 'border-blue-400';
+      }
+    } else {
+      return showHint && isCorrectAnswer
+        ? 'border-green-600'
+        : 'border-transparent';
+    }
+  }, [selected, showHint, isCorrectAnswer]);
 
   return (
-    <div className={cn(className, "flex flex-row mr-4 items-center")}>
+    <div className={cn(className, 'flex flex-row mr-4 items-center')}>
       <div
         onClick={select}
         className={cn(
-          "flex flex-row hover:cursor-pointer hover:border-blue-300 border rounded-md px-2 mr-2",
+          'flex flex-row hover:cursor-pointer hover:border-blue-300 border rounded-md px-2 mr-2',
           borderColorClass
         )}
       >
@@ -57,15 +60,8 @@ export default function AnswerOption({
         />
       </div>
       <FaRegQuestionCircle
-        className={cn(
-          iconVisibilityClass,
-          showAnswer && "text-green-600",
-          "hover:cursor-pointer"
-        )}
-        onClick={() => {
-          showExplain();
-          setShowAnswer(!showAnswer);
-        }}
+        className={cn(iconVisibilityClass, 'hover:cursor-pointer')}
+        onClick={showExplain}
       />
     </div>
   );

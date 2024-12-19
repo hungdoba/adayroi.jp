@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { jlpt_chokai } from "@prisma/client";
-import Mondai from "@/components/jlpt/listen/Mondai";
-import Mondai5 from "@/components/jlpt/listen/Mondai5";
-import { getJLPTListenFullDetailCache } from "@/actions/jlpt";
-import { getTranslations } from "next-intl/server";
+import Link from 'next/link';
+import { jlpt_chokai } from '@prisma/client';
+import Mondai from '@/components/jlpt/listen/Mondai';
+import Mondai5 from '@/components/jlpt/listen/Mondai5';
+import { getJLPTListenFullDetailCache } from '@/actions/jlpt';
+import { getTranslations } from 'next-intl/server';
 
 type Props = {
   params: Promise<{ year: string; month: string }>;
@@ -11,7 +11,7 @@ type Props = {
 
 export default async function JLPTDetail({ params }: Props) {
   const { year, month } = await params;
-  const t = await getTranslations("JlptPage");
+  const t = await getTranslations('JlptPage');
   const data = await getJLPTListenFullDetailCache(year, month);
 
   function getMondai(mondaiNumber: number): jlpt_chokai[] {
@@ -24,13 +24,13 @@ export default async function JLPTDetail({ params }: Props) {
       <div className="mx-4 md:mx-8">
         <div className="space-y-2 pb-8 md:pt-6 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-4xl md:leading-14">
-            {t("title")}
+            {t('title')}
           </h1>
           <div className="flex justify-between">
             <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
               {`${year} - ${month}`}
             </p>
-            <Link href={`./read`}>{t("gotoReading")}</Link>
+            <Link href={`./read`}>{t('gotoReading')}</Link>
           </div>
         </div>
         <hr />
@@ -48,7 +48,7 @@ export default async function JLPTDetail({ params }: Props) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {`${year} - ${month}`}
           </p>
-          <Link href={`./read`}>{t("gotoReading")}</Link>
+          <Link href={`./read`}>{t('gotoReading')}</Link>
         </div>
       </div>
     </div>
