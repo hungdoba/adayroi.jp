@@ -4,6 +4,7 @@ import { cn } from '@/utils/cn';
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 import { FiAnchor, FiChevronUp, FiEdit, FiList } from 'react-icons/fi';
+import ButtonScrollTop from '../common/ButtonScrollTop';
 
 interface Props {
   children: ReactNode;
@@ -26,19 +27,11 @@ export default function TableOfContentClient({
     setPin(!pin);
   }
 
-  function handleScrollToTheTop(): void {
-    window.scrollTo({
-      top: 0,
-    });
-  }
-
   return (
     <div className={cn('md:mr-8 md:top-4', pin ? 'md:sticky' : 'md:static')}>
       {/* Button show table of content and scroll to top */}
+      <ButtonScrollTop className="bottom-10" />
       <div className="z-50 fixed right-2 bottom-2 hover:cursor-pointer">
-        <div className="p-2 md:p-4" onClick={handleScrollToTheTop}>
-          <FiChevronUp />
-        </div>
         <div className="p-2 md:p-4" onClick={handleShowTableOfContent}>
           <FiList />
         </div>

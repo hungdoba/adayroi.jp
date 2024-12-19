@@ -11,6 +11,7 @@ import Mondai13 from '@/components/jlpt/read/Mondai13';
 import { getTranslations } from 'next-intl/server';
 import { getJLPTReadFullDetail } from '@/actions/jlpt';
 import { FiChevronUp } from 'react-icons/fi';
+import ButtonScrollTop from '@/components/common/ButtonScrollTop';
 
 type Props = {
   params: Promise<{ year: string; month: string }>;
@@ -86,6 +87,7 @@ export default async function JLPTDetail({ params }: Props) {
           <Link href={`./listen`}>{t('gotoListening')}</Link>
         </div>
       </div>
+      <ButtonScrollTop />
     </div>
   );
 }
