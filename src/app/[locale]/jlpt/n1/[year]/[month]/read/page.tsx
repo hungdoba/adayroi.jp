@@ -1,22 +1,22 @@
-import Link from 'next/link';
-import { MondaiData } from '@/types/Jlpt';
-import Mondai from '@/components/jlpt/read/Mondai';
-import Mondai7 from '@/components/jlpt/read/Mondai7';
-import Mondai8 from '@/components/jlpt/read/Mondai8';
-import Mondai9 from '@/components/jlpt/read/Mondai9';
-import Mondai10 from '@/components/jlpt/read/Mondai10';
-import Mondai11 from '@/components/jlpt/read/Mondai11';
-import Mondai12 from '@/components/jlpt/read/Mondai12';
-import Mondai13 from '@/components/jlpt/read/Mondai13';
-import { getJLPTReadFullDetail } from '@/actions/jlpt';
-import { getTranslations } from 'next-intl/server';
+import Link from "next/link";
+import { MondaiData } from "@/types/Jlpt";
+import Mondai from "@/components/jlpt/read/Mondai";
+import Mondai7 from "@/components/jlpt/read/Mondai7";
+import Mondai8 from "@/components/jlpt/read/Mondai8";
+import Mondai9 from "@/components/jlpt/read/Mondai9";
+import Mondai10 from "@/components/jlpt/read/Mondai10";
+import Mondai11 from "@/components/jlpt/read/Mondai11";
+import Mondai12 from "@/components/jlpt/read/Mondai12";
+import Mondai13 from "@/components/jlpt/read/Mondai13";
+import { getTranslations } from "next-intl/server";
+import { getJLPTReadFullDetail } from "@/actions/jlpt";
 
 type Props = {
   params: Promise<{ year: string; month: string }>;
 };
 
 export default async function JLPTDetail({ params }: Props) {
-  const t = await getTranslations('JlptPage');
+  const t = await getTranslations("JlptPage");
   const { year, month } = await params;
   const mondaiData = await getJLPTReadFullDetail(year, month);
 
@@ -30,7 +30,7 @@ export default async function JLPTDetail({ params }: Props) {
     return { mondai: mondai, questions: question };
   }
 
-  const renderMondaiComponents = () =>
+  const renderMondai1to6 = () =>
     [1, 2, 3, 4, 5, 6].map((mondaiNumber, index) => (
       <Mondai
         key={index}
@@ -44,19 +44,20 @@ export default async function JLPTDetail({ params }: Props) {
       <div className="mx-4 md:mx-8">
         <div className="space-y-2 pb-8 md:pt-6 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-4xl md:leading-14">
-            JLPT N1
+            {t("title")}
           </h1>
           <div className="flex justify-between">
             <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
               {`${year} - ${month}`}
             </p>
-            <Link href={`./listen`}>{t('gotoListening')}</Link>
+            <Link href={`./listen`}>{t("gotoListening")}</Link>
           </div>
         </div>
         <hr />
       </div>
       <div className="underline-offset-4">
-        {renderMondaiComponents()}
+        {/* Mondai 1~6 */}
+        {renderMondai1to6()}
         <Mondai7 data={getMondai(7)} />
         <Mondai8
           data1={getMondai(81)}
@@ -81,7 +82,7 @@ export default async function JLPTDetail({ params }: Props) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {`${year} - ${month}`}
           </p>
-          <Link href={`./listen`}>{t('gotoListening')}</Link>
+          <Link href={`./listen`}>{t("gotoListening")}</Link>
         </div>
       </div>
     </div>

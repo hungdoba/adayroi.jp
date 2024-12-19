@@ -1,8 +1,9 @@
-'use client';
-import { useState } from 'react';
-import { jlpt_mondai } from '@prisma/client';
-import { FaRegLightbulb } from 'react-icons/fa';
-import { AutosizeTextarea } from '@/components/ui/AutosizeTextarea';
+"use client";
+import { useState } from "react";
+import { cn } from "@/utils/cn";
+import Explain from "../Explain";
+import { jlpt_mondai } from "@prisma/client";
+import { FaRegLightbulb } from "react-icons/fa";
 
 interface Props {
   mondai: jlpt_mondai;
@@ -19,9 +20,10 @@ export default function MondaiContent({ mondai }: Props) {
         </h2>
         <FaRegLightbulb
           onClick={() => setShowHint(!showHint)}
-          className={`w-4 h-4 ml-2 cursor-pointer ${
-            showHint ? 'text-yellow-600' : ''
-          }`}
+          className={cn(
+            "w-4 h-4 ml-2 cursor-pointer",
+            showHint && "text-yellow-600"
+          )}
         />
       </div>
 
@@ -32,11 +34,7 @@ export default function MondaiContent({ mondai }: Props) {
       />
 
       {/* Mondai's question translate (note) */}
-      {showHint && (
-        <div className="rounded border text-gray-400 border-gray-200 dark:border-gray-600 p-4 my-4">
-          <AutosizeTextarea readOnly value={mondai.mondai_content} />
-        </div>
-      )}
+      <Explain isShowed={showHint} content={mondai.note} />
     </div>
   );
 }

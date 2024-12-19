@@ -1,7 +1,8 @@
-import Bookmark from '../../common/Bookmark';
-import AudioPlayer from '../../ui/AudioPlayer';
-import { jlpt_chokai } from '@prisma/client';
-import { FaRegLightbulb } from 'react-icons/fa';
+import { cn } from "@/utils/cn";
+import Bookmark from "../../common/Bookmark";
+import AudioPlayer from "../../ui/AudioPlayer";
+import { jlpt_chokai } from "@prisma/client";
+import { FaRegLightbulb } from "react-icons/fa";
 
 interface Props {
   question: jlpt_chokai;
@@ -25,9 +26,10 @@ export default function Question({ question, hintShowed, showHint }: Props) {
           <Bookmark />
           <FaRegLightbulb
             onClick={showHint}
-            className={`w-5 h-5 ml-2 cursor-pointer ${
-              hintShowed ? 'text-yellow-600' : ''
-            }`}
+            className={cn(
+              "w-5 h-5 ml-2 cursor-pointer",
+              hintShowed && "text-yellow-600"
+            )}
           />
         </div>
       </div>

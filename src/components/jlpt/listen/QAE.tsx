@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 import Question from "./Question";
-import Answer from "./Answer";
 import Explain from "../Explain";
 import { jlpt_chokai } from "@prisma/client";
+import Answer from "../common/Answer";
 
 interface Props {
   question: jlpt_chokai;
@@ -37,13 +37,7 @@ export default function QAE({ question }: Props) {
         selectOption={(value: number) => handleSelectOption(value)}
         selectedOption={selectedOption}
       />
-      {showExplain && (
-        <Explain
-          isAdmin={false}
-          question_id={question.id}
-          content={question.script}
-        />
-      )}
+      <Explain isShowed={showExplain && hintShowed} content={question.script} />
     </div>
   );
 }

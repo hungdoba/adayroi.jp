@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { CloudImage } from '@/types/CloudImage';
-import { useEffect, useRef, useState } from 'react';
-import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import Link from "next/link";
+import Image from "next/image";
+import { CloudImage } from "@/types/CloudImage";
+import { useEffect, useRef, useState } from "react";
+import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
+import { cn } from "@/utils/cn";
 
 interface Props {
   images: CloudImage[];
@@ -22,11 +23,11 @@ export default function ImageView({ images, initSelectedId }: Props) {
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('wheel', handleWheel);
+      container.addEventListener("wheel", handleWheel);
     }
     return () => {
       if (container) {
-        container.removeEventListener('wheel', handleWheel);
+        container.removeEventListener("wheel", handleWheel);
       }
     };
   }, []);
@@ -53,7 +54,7 @@ export default function ImageView({ images, initSelectedId }: Props) {
 
       container.scrollTo({
         left: scrollPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -77,15 +78,14 @@ export default function ImageView({ images, initSelectedId }: Props) {
   return (
     <div className="absolute w-screen flex flex-col h-screen items-center">
       <div className="h-5/6 w-full flex items-center justify-center pt-2 md:pt-4">
-        <div
-          className={`mx-2 md:mx-0 relative overflow-hidden h-1/3 md:h-full max-w-7xl flex-1`}
-        >
+        <div className="mx-2 md:mx-0 relative overflow-hidden h-1/3 md:h-full max-w-7xl flex-1">
           {images.map((image, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                image.id === selectedId ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-700 ease-in-out",
+                image.id === selectedId ? "opacity-100" : "opacity-0"
+              )}
             >
               {/* Main image */}
               <Image
@@ -95,10 +95,10 @@ export default function ImageView({ images, initSelectedId }: Props) {
                 fill
                 sizes="100vw"
                 style={{
-                  objectFit: 'cover',
+                  objectFit: "cover",
                 }}
                 className="transform rounded-lg transition-opacity duration-700 ease-in-out opacity-0"
-                onLoadingComplete={(img) => img.classList.remove('opacity-0')}
+                onLoadingComplete={(img) => img.classList.remove("opacity-0")}
               />
             </div>
           ))}
@@ -153,15 +153,15 @@ export default function ImageView({ images, initSelectedId }: Props) {
               <Image
                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_fill,h_200,w_200/${image.public_id}.${image.format}`}
                 alt={`Thumbnail ${index}`}
-                className={`rounded-lg transition-transform duration-300 ${
-                  image.id === selectedId
-                    ? 'transform scale-105 border-2 border-blue-500'
-                    : ''
-                }`}
+                className={cn(
+                  "rounded-lg transition-transform duration-300",
+                  image.id === selectedId &&
+                    "transform scale-105 border-2 border-blue-500"
+                )}
                 fill
                 sizes="96px"
                 style={{
-                  objectFit: 'cover',
+                  objectFit: "cover",
                 }}
               />
             </div>

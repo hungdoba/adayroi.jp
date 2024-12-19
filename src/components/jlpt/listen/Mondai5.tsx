@@ -4,9 +4,9 @@ import { useState } from "react";
 import { jlpt_chokai } from "@prisma/client";
 
 import QAE from "./QAE";
-import Answer from "./Answer";
 import Question from "./Question";
 import Explain from "../Explain";
+import Answer from "../common/Answer";
 
 interface Props {
   questions: jlpt_chokai[];
@@ -71,9 +71,10 @@ export default function Mondai5({ questions }: Props) {
               />
             </div>
           </div>
-          {showExplain && (
-            <Explain isAdmin={false} content={questions[2].script} />
-          )}
+          <Explain
+            isShowed={showExplain && showHint}
+            content={questions[2].script}
+          />
         </div>
       </div>
     </div>

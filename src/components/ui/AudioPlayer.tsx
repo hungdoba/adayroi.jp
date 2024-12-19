@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useRef, useState, useEffect } from 'react';
-import { FiAlertTriangle, FiPause, FiPlay } from 'react-icons/fi';
+import { cn } from "@/utils/cn";
+import { useRef, useState, useEffect } from "react";
+import { FiAlertTriangle, FiPause, FiPlay } from "react-icons/fi";
 
 interface Props {
   src: string | null;
@@ -59,9 +60,9 @@ export default function AudioPlayer({ src }: Props) {
     if (src) {
       const checkAudioSrc = async () => {
         try {
-          const response = await fetch(src, { method: 'HEAD' });
+          const response = await fetch(src, { method: "HEAD" });
           if (!response.ok) {
-            throw new Error('Audio source not found');
+            throw new Error("Audio source not found");
           }
         } catch (error) {
           console.log(error);
@@ -74,15 +75,15 @@ export default function AudioPlayer({ src }: Props) {
 
       const audioElement = audioRef.current;
       if (audioElement) {
-        audioElement.addEventListener('timeupdate', handleProgress);
-        audioElement.addEventListener('ended', () => setIsPlaying(false));
-        audioElement.addEventListener('error', handleError);
+        audioElement.addEventListener("timeupdate", handleProgress);
+        audioElement.addEventListener("ended", () => setIsPlaying(false));
+        audioElement.addEventListener("error", handleError);
       }
       return () => {
         if (audioElement) {
-          audioElement.removeEventListener('timeupdate', handleProgress);
-          audioElement.removeEventListener('ended', () => setIsPlaying(false));
-          audioElement.removeEventListener('error', handleError);
+          audioElement.removeEventListener("timeupdate", handleProgress);
+          audioElement.removeEventListener("ended", () => setIsPlaying(false));
+          audioElement.removeEventListener("error", handleError);
         }
       };
     }
@@ -110,9 +111,10 @@ export default function AudioPlayer({ src }: Props) {
         )}
         <div
           ref={progressRef}
-          className={`w-full items-stretch mx-4 bg-gray-200 dark:bg-gray-700 h-2 rounded-full ${
-            !hasError && 'cursor-pointer'
-          }`}
+          className={cn(
+            "w-full items-stretch mx-4 bg-gray-200 dark:bg-gray-700 h-2 rounded-full",
+            !hasError && "cursor-pointer"
+          )}
           onClick={handleProgressClick}
         >
           <div

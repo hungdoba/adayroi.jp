@@ -9,6 +9,7 @@ import { Locale } from "@/i18n/routing";
 import { deleteImage, uploadImage } from "@/actions/image";
 import Dropdown from "../common/Dropdown";
 import LocaleList from "../common/LocaleList";
+import { cn } from "@/utils/cn";
 
 interface Props {
   categories: post_category[];
@@ -168,10 +169,11 @@ const PostStaticInfoEditor: React.FC<Props> = ({
             className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500"
           >
             <div
-              className={`${
+              className={cn(
+                "flex flex-col items-center justify-center pt-5 pb-4",
                 deleteSuccess != null &&
-                (deleteSuccess ? "text-green-500" : "text-red-500")
-              } flex flex-col items-center justify-center pt-5 pb-4`}
+                  (deleteSuccess ? "text-green-500" : "text-red-500")
+              )}
             >
               <FiTrash />
             </div>

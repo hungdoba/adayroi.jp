@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { FaRegQuestionCircle } from 'react-icons/fa';
+import { cn } from "@/utils/cn";
+import { useState } from "react";
+import { FaRegQuestionCircle } from "react-icons/fa";
 
 interface Props {
   optionNumber: number;
@@ -27,23 +28,26 @@ export default function AnswerOption({
   const [showAnswer, setShowAnswer] = useState(false);
 
   const iconVisibilityClass =
-    isCorrectAnswer && showHint ? 'block' : 'collapse';
+    isCorrectAnswer && showHint ? "block" : "collapse";
 
   const borderColorClass = selected
     ? showHint
       ? isCorrectAnswer
-        ? 'border-green-600' // Selected, showHint, and correct answer
-        : 'border-red-600' // Selected, showHint, but incorrect answer
-      : 'border-blue-400' // Selected, but not showing hint
+        ? "border-green-600" // Selected, showHint, and correct answer
+        : "border-red-600" // Selected, showHint, but incorrect answer
+      : "border-blue-400" // Selected, but not showing hint
     : showHint && isCorrectAnswer
-    ? 'border-green-600' // Not selected, but showHint and correct answer
-    : 'border-transparent'; // Not selected and not showing hint or incorrect answer
+    ? "border-green-600" // Not selected, but showHint and correct answer
+    : "border-transparent"; // Not selected and not showing hint or incorrect answer
 
   return (
-    <div className={`flex flex-row mr-4 items-center ${className ?? ''}`}>
+    <div className={cn(className, "flex flex-row mr-4 items-center")}>
       <div
         onClick={select}
-        className={`flex flex-row hover:cursor-pointer hover:border-blue-300 border rounded-md px-2 mr-2 ${borderColorClass}`}
+        className={cn(
+          "flex flex-row hover:cursor-pointer hover:border-blue-300 border rounded-md px-2 mr-2",
+          borderColorClass
+        )}
       >
         <div className="mr-4">{optionNumber}</div>
         <p
@@ -53,9 +57,11 @@ export default function AnswerOption({
         />
       </div>
       <FaRegQuestionCircle
-        className={`${iconVisibilityClass} ${
-          showAnswer && 'text-green-600'
-        } hover:cursor-pointer`}
+        className={cn(
+          iconVisibilityClass,
+          showAnswer && "text-green-600",
+          "hover:cursor-pointer"
+        )}
         onClick={() => {
           showExplain();
           setShowAnswer(!showAnswer);

@@ -1,4 +1,4 @@
-import { FiAnchor } from 'react-icons/fi';
+import { FiAnchor } from "react-icons/fi";
 
 export default function loading() {
   const elements = Array.from({ length: 5 }, (_, index) => index + 1);
@@ -6,10 +6,8 @@ export default function loading() {
     <div className="container mx-auto w-full my-4 md:max-w-5xl animate-pulse">
       <div className="flex flex-col md:flex-row mx-4 md:mx-8">
         <div className="hidden md:block w-full md:w-1/4">
-          <div className={`md:mr-8 md:top-4`}>
-            <div
-              className={`overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white bg-opacity-95 dark:bg-slate-800 dark:bg-opacity-95`}
-            >
+          <div className="md:mr-8 md:top-4">
+            <div className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white bg-opacity-95 dark:bg-slate-800 dark:bg-opacity-95">
               <div className="relative p-4 md:p-0 w-full max-w-2xl max-h-full">
                 {/* Modal content */}
                 <div className="relative bg-white rounded-lg dark:bg-gray-700 md:bg-transparent md:dark:bg-transparent">

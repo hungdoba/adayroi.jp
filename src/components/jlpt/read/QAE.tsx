@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import Answer from './Answer';
-import Explain from '../Explain';
-import Question from './Question';
-import { jlpt_question } from '@prisma/client';
+import Answer from "../common/Answer";
+import Explain from "../Explain";
+import Question from "./Question";
+import { jlpt_question } from "@prisma/client";
 
 interface Props {
   question: jlpt_question;
@@ -43,7 +43,7 @@ export default function QAE({ question }: Props) {
         selectOption={(value: number) => handleSelectOption(value)}
         selectedOption={selectedOption}
       />
-      {hintShowed && showExplain && <Explain content={question.note} />}
+      <Explain isShowed={hintShowed && showExplain} content={question.note} />
     </div>
   );
 }

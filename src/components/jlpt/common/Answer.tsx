@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import AnswerOption from '../AnswerOption';
-import { jlpt_question } from '@prisma/client';
+import { useEffect, useState } from "react";
+import AnswerOption from "../AnswerOption";
+import { jlpt_chokai, jlpt_question } from "@prisma/client";
+import { cn } from "@/utils/cn";
 
 interface Props {
-  question: jlpt_question;
+  question: jlpt_question | jlpt_chokai;
   selectedOption: number;
   selectOption: (value: number) => void;
   hintShowed: boolean;
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const getOptionText = (
-  question: jlpt_question,
+  question: jlpt_question | jlpt_chokai,
   optionNumber: number
 ): string | null => {
   switch (optionNumber) {
@@ -30,7 +31,7 @@ const getOptionText = (
   }
 };
 
-const getMaxTextLength = (question: jlpt_question): number => {
+const getMaxTextLength = (question: jlpt_question | jlpt_chokai): number => {
   const lengths = [
     question.option_1,
     question.option_2,
@@ -53,13 +54,13 @@ export default function Answer({
   useEffect(() => {
     const handleResize = () => {
       if (maxTextLength < 6) {
-        setCols('grid-cols-2 md:grid-cols-4');
+        setCols("grid-cols-2 md:grid-cols-4");
       } else if (maxTextLength < 10) {
-        setCols('grid-cols-1 md:grid-cols-4');
+        setCols("grid-cols-1 md:grid-cols-4");
       } else if (maxTextLength < 25) {
-        setCols('grid-cols-1 md:grid-cols-2');
+        setCols("grid-cols-1 md:grid-cols-2");
       } else {
-        setCols('grid-cols-1');
+        setCols("grid-cols-1");
       }
     };
 
@@ -67,7 +68,7 @@ export default function Answer({
   }, [maxTextLength]);
 
   return (
-    <div className={`mb-4 ml-4 grid ${cols ?? 'grid-cols-2 md:grid-cols-4'}`}>
+    <div className={cn("mb-4 ml-4 grid", cols && "grid-cols-2 md:grid-cols-4")}>
       {[1, 2, 3, 4].map((optionNumber) => (
         <AnswerOption
           key={optionNumber}

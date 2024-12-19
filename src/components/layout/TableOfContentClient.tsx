@@ -1,5 +1,6 @@
 "use client";
 import { Link } from "@/i18n/routing";
+import { cn } from "@/utils/cn";
 import { useTranslations } from "next-intl";
 import { ReactNode, useState } from "react";
 import { FiAnchor, FiChevronUp, FiEdit, FiList } from "react-icons/fi";
@@ -32,7 +33,7 @@ export default function TableOfContentClient({
   }
 
   return (
-    <div className={`md:mr-8 md:top-4 ${pin ? "md:sticky" : "md:static"}`}>
+    <div className={cn("md:mr-8 md:top-4", pin ? "md:sticky" : "md:static")}>
       {/* Button show table of content */}
       <div className="z-50 fixed right-2 bottom-2 hover:cursor-pointer">
         <div className="p-2 md:p-4" onClick={handleScrollToTheTop}>
@@ -45,9 +46,10 @@ export default function TableOfContentClient({
 
       {/* Table of content */}
       <div
-        className={`${
+        className={cn(
+          "z-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white bg-opacity-95 dark:bg-slate-800 dark:bg-opacity-95 md:bg-transparent md:dark:bg-transparent",
           !visible && "hidden md:block"
-        } z-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white bg-opacity-95 dark:bg-slate-800 dark:bg-opacity-95 md:bg-transparent md:dark:bg-transparent`}
+        )}
       >
         <div className="relative p-4 md:p-0 w-full max-w-2xl max-h-full">
           {/* Modal content */}
@@ -69,11 +71,12 @@ export default function TableOfContentClient({
                     </Link>
                   )}
                   <div
-                    className={`hidden md:block p-2 hover:cursor-pointer ${
+                    className={cn(
+                      "hidden md:block p-2 hover:cursor-pointer",
                       pin
                         ? "text-blue-500 dark:text-blue-600"
                         : "text-gray-400 dark:text-gray-500"
-                    }`}
+                    )}
                     onClick={() => setPin(!pin)}
                   >
                     <FiAnchor />
