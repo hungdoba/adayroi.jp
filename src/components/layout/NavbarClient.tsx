@@ -23,7 +23,7 @@ export default function NavbarClient({ menuItems, session }: Props) {
   };
 
   return (
-    <nav className="container z-30 w-full max-w-screen-lg dark:bg-gray-900/50 backdrop-blur-2xl border-b border-gray-200 dark:border-gray-700">
+    <nav className="z-30 w-full max-w-screen-lg dark:bg-gray-900/50 backdrop-blur-2xl border-b border-gray-200 dark:border-gray-700">
       <div className="flex flex-wrap md:flex-nowrap items-center justify-between py-4 md:py-4 md:gap-0 relative">
         <div className="relative z-20 w-full flex justify-between md:w-max md:px-0">
           {/* Logo */}
@@ -33,7 +33,7 @@ export default function NavbarClient({ menuItems, session }: Props) {
               priority
               width={430}
               height={148}
-              className="h-10 w-auto px-4 rounded"
+              className="h-10 w-auto pr-4 rounded"
               alt="Logo"
             />
           </Link>

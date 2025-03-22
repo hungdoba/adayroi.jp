@@ -20,7 +20,10 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <div className={cn('p-4 hover:cursor-pointer')} onClick={handleChangeTheme}>
+    <div
+      className={cn('p-4 pr-0 hover:cursor-pointer')}
+      onClick={handleChangeTheme}
+    >
       {!mounted ? <Cloud /> : resolvedTheme === 'dark' ? <Moon /> : <Sun />}
     </div>
   );

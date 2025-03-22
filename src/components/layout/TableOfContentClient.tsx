@@ -28,7 +28,7 @@ export default function TableOfContentClient({
   }
 
   return (
-    <div className={cn('md:mr-8 md:top-4', pin ? 'md:sticky' : 'md:static')}>
+    <div className={cn('md:ml-8 md:top-4', pin ? 'md:sticky' : 'md:static')}>
       {/* Button show table of content and scroll to top */}
       <ButtonScrollTop className="bottom-10" />
       <div className="z-50 fixed right-2 bottom-2 hover:cursor-pointer">
