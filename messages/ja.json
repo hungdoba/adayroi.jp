@@ -1,0 +1,125 @@
+{
+  "HomePage": {
+    "title": "最新記事",
+    "brief": "日本を満喫し、すべての瞬間を楽しもう"
+  },
+  "LocaleSwitcher": {
+    "label": "言語を変更",
+    "locale": "{locale, select, vi {Tiếng Việt} ja {日本語} en {English}  other {Unknown}}",
+    "icon": "{locale, select, vi {/flags/vi.svg} ja {/flags/ja.svg} en {/flags/en.svg} other {/flags/unknown.svg}}"
+  },
+  "PostList": {
+    "readMore": "全文を読む"
+  },
+  "FullPost": {
+    "loadingMore": "さらに投稿を読み込んでいます...",
+    "noMorePost": "投稿はこれ以上ありません",
+    "tableOfContents": "目次",
+    "edit": "修正"
+  },
+  "JlptPage": {
+    "title": "JLPT",
+    "brief": "各年のJLPT試験の問題と回答のまとめ、みんながより良く勉強できるようにします。",
+    "detail": "言語知識（語彙/文法）、読解、リスニング",
+    "gotoReading": "読解へ",
+    "gotoListening": "リスニングへ"
+  },
+  "SignInPage": {
+    "username": "ユーザー名",
+    "usernamePlaceholder": "ユーザー名を入力してください",
+    "password": "パスワード",
+    "passwordPlaceholder": "8文字以上",
+    "forgot": "パスワードを忘れた場合",
+    "signIn": "サインイン",
+    "signUpQuestion": "まだアカウントをお持ちでないですか？",
+    "signUp": "サインアップ",
+    "error": "認証情報が間違いました"
+  },
+  "SignUpPage": {
+    "username": "ユーザー名",
+    "usernamePlaceholder": "ユーザー名を入力してください",
+    "email": "メールアドレス",
+    "emailPlaceholder": "user@email.com",
+    "password": "パスワード",
+    "passwordPlaceholder": "8文字以上",
+    "confirmPassword": "パスワードの確認",
+    "confirmPasswordPlaceholder": "8文字以上",
+    "agree": "私は",
+    "term": "利用規約に同意します",
+    "signUp": "登録",
+    "hadAccount": "すでにアカウントをお持ちですか？",
+    "signIn": "サインイン"
+  },
+  "ChangePasswordPage": {
+    "currentPassword": "使用中パスワード",
+    "currentPasswordPlaceholder": "現在のパスワードを入力してください",
+    "newPassword": "新しいパスワード",
+    "newPasswordPlaceholder": "8文字以上",
+    "confirmPassword": "パスワード確認",
+    "confirmPasswordPlaceholder": "8文字以上",
+    "request": "パスワード変更"
+  },
+  "Forgot": {
+    "email": "メールアドレス",
+    "emailPlaceholder": "user@email.com",
+    "or": "または",
+    "signIn": "ここでログイン",
+    "request": "リクエストを送信"
+  },
+  "Navbar": {
+    "changePassword": "パスワード変更",
+    "signOut": "ログアウト",
+    "signIn": "ログイン",
+    "admin": "管理者"
+  },
+  "AskAIPage": {
+    "overview": "このチャットボットAIは、Google Geminiモデルを使用して日本語の会話練習を支援します。何でも質問でき、多言語で回答できます。",
+    "send": "メッセージを送信 ...",
+    "title": "近日公開",
+    "message": "素晴らしい新しいウェブサイトをお届けできるよう、鋭意制作中です。ご期待ください",
+    "button": "ホームページに戻る"
+  },
+  "GalleryPage": {
+    "title": "ギャラリー",
+    "brief": "人生の中でいくつかの美しい瞬間を共有し、皆さんが興味深い瞬間を見つけられることを願っています。"
+  },
+  "UnAuthorizedPage": {
+    "title": "アクセスが拒否されました",
+    "message": "申し訳ありませんが、このページにアクセスする権限がありません。詳細については、管理者にお問い合わせください。",
+    "button": "ホームページに戻る"
+  },
+  "TermsAndConditions": {
+    "title": "利用規約",
+    "intro": "私たちのブログへようこそ！登録して当サイトをご利用いただくことで、以下の利用規約に同意したものとみなされます。",
+    "acceptanceTitle": "1. 利用規約の承認",
+    "acceptanceContent": "当サイトにアクセスして利用することにより、この契約の条項および規定に拘束されることに同意したものとみなされます。また、当サイトのサービスを利用する際は、当該サービスに適用されるガイドラインや規則にも従う必要があります。",
+    "registrationTitle": "2. 登録",
+    "registrationContent": "Geminiをベースにしたチャットボットを使用して、当サイトに登録できます。登録することで、チャットボットに促された通り、正確かつ完全な情報を提供することに同意するものとします。",
+    "userConductTitle": "3. ユーザーの行動",
+    "userConductContent": "当サイトは合法的な目的でのみ利用することができ、他人の権利を侵害する行為や、他のユーザーの利用や楽しみを妨げる行為をしてはなりません。",
+    "privacyPolicyTitle": "4. プライバシーポリシー",
+    "privacyPolicyContent": "私たちはお客様のプライバシーを保護することに取り組んでいます。プライバシーポリシーをご覧になり、当サイトの利用にあたっての当社の慣行についてご理解ください。",
+    "changesToTermsTitle": "5. 規約の変更",
+    "changesToTermsContent": "私たちは、いつでもこれらの規約を変更する権利を有します。変更後の規約は、引き続き当サイトをご利用いただくことで受け入れたものとみなされます。",
+    "contactUsTitle": "6. お問い合わせ",
+    "contactUsContent": "この利用規約についてご質問がある場合は、お問い合わせください。",
+    "thankYou": "私たちのブログをご覧いただき、ありがとうございます！"
+  },
+  "Footer": {
+    "reserved": "すべての権利を保有します"
+  },
+  "Button": {
+    "createPost": "新しい投稿を作成",
+    "revalidateImage": "画像をリロード",
+    "revalidatePost": "投稿をリロード"
+  },
+  "Rss": {
+    "title": "{websiteName} - 日本での生活を満喫し、すべての瞬間を楽しもう",
+    "description": "{websiteName} は、日本での生活を満喫し、すべての瞬間を楽しむためのブログです。最新情報、ヒント、コツを提供し、日本での生活をより楽しくします。"
+  },
+  "404Page": {
+    "title": "何かが欠けています",
+    "message": "申し訳ありませんが、お探しのページは削除されたか、名前が変更されたか、一時的に利用できない可能性があります。",
+    "button": "ホームページに戻る"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "HomePage": {
+    "title": "Bài viết mới nhất",
+    "brief": "Giúp bạn 'Sống Trọn Nhật Bản, Tận Hưởng Từng Khoảnh Khắc'"
+  },
+  "LocaleSwitcher": {
+    "label": "Đổi ngôn ngữ",
+    "locale": "{locale, select, vi {Tiếng Việt} ja {日本語} en {English} other {Unknown}}",
+    "icon": "{locale, select, vi {/flags/vi.svg} ja {/flags/ja.svg} en {/flags/en.svg} other {/flags/unknown.svg}}"
+  },
+  "PostList": {
+    "readMore": "Đọc toàn bộ bài viết này"
+  },
+  "FullPost": {
+    "loadingMore": "Đang tải thêm bài viết...",
+    "noMorePost": "Không còn bài viết nào",
+    "tableOfContents": "Mục lục",
+    "edit": "Chỉnh sửa"
+  },
+  "JlptPage": {
+    "title": "JLPT",
+    "brief": "Tổng hợp đề thi và đáp án JLPT các năm, giúp mọi người ôn luyện tốt hơn.",
+    "detail": "Kiến thức ngôn ngữ (Từ vựng/Ngữ pháp), Đọc hiểu, Nghe hiểu",
+    "gotoReading": "Đến Đọc hiểu",
+    "gotoListening": "Đến Nghe hiểu"
+  },
+  "SignInPage": {
+    "username": "Tên người dùng",
+    "usernamePlaceholder": "Nhập tên người dùng của bạn",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Tối thiểu 8 ký tự",
+    "forgot": "Quên mật khẩu",
+    "signIn": "Đăng nhập",
+    "signUpQuestion": "Chưa có tài khoản?",
+    "signUp": "Đăng ký",
+    "error": "Sai thông tin đăng nhập"
+  },
+  "SignUpPage": {
+    "username": "Tên người dùng",
+    "usernamePlaceholder": "Nhập tên người dùng của bạn",
+    "email": "Email của bạn",
+    "emailPlaceholder": "user@email.com",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Tối thiểu 8 ký tự",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Tối thiểu 8 ký tự",
+    "agree": "Tôi đồng ý với",
+    "term": "các điều khoản và điều kiện",
+    "signUp": "Đăng ký",
+    "hadAccount": "Đã có tài khoản?",
+    "signIn": "Đăng nhập"
+  },
+  "ChangePasswordPage": {
+    "currentPassword": "Mật khẩu hiện tại",
+    "currentPasswordPlaceholder": "Nhập mật khẩu hiện tại của bạn",
+    "newPassword": "Mật khẩu mới",
+    "newPasswordPlaceholder": "Tối thiểu 8 ký tự",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Tối thiểu 8 ký tự",
+    "request": "Thay đổi mật khẩu"
+  },
+  "Forgot": {
+    "email": "Email của bạn",
+    "emailPlaceholder": "user@email.com",
+    "or": "Hoặc",
+    "signIn": "Đăng nhập tại đây",
+    "request": "Gửi yêu cầu"
+  },
+  "Navbar": {
+    "changePassword": "Đổi mật khẩu",
+    "signOut": "Đăng xuất",
+    "signIn": "Đăng nhập",
+    "admin": "Quản trị viên"
+  },
+  "AskAIPage": {
+    "overview": "Chatbot AI này sử dụng mô hình Google Gemini để giúp bạn luyện tập hội thoại tiếng Nhật. Bạn có thể hỏi bất cứ điều gì, và nó có thể trả lời bằng nhiều ngôn ngữ.",
+    "send": "Gửi tin nhắn ...",
+    "title": "Dịch vụ sẽ sớm ra mắt",
+    "message": "Chúng tôi đang cố gắng để đưa đến dịch vụ tốt nhất và sớm nhất cho bạn",
+    "button": "Quay lại trang chủ"
+  },
+  "GalleryPage": {
+    "title": "Ảnh chill",
+    "brief": "Chia sẻ một vài khoảnh khắc đẹp trong cuộc sống, hi vọng mọi người sẽ tìm được một số khoảnh khắc thú vị."
+  },
+  "UnAuthorizedPage": {
+    "title": "Truy cập bị từ chối",
+    "message": "Xin lỗi, bạn không có quyền truy cập trang này. Vui lòng liên hệ quản trị viên để biết thêm chi tiết.",
+    "button": "Quay lại trang chủ"
+  },
+  "TermsAndConditions": {
+    "title": "Điều khoản và Điều kiện",
+    "intro": "Chào mừng đến với blog của chúng tôi! Bằng cách đăng ký và sử dụng trang web của chúng tôi, bạn đồng ý với các điều khoản và điều kiện sau đây:",
+    "acceptanceTitle": "1. Chấp nhận Điều khoản",
+    "acceptanceContent": "Bằng cách truy cập và sử dụng trang web của chúng tôi, bạn chấp nhận và đồng ý bị ràng buộc bởi các điều khoản và quy định của thỏa thuận này. Ngoài ra, khi sử dụng các dịch vụ của trang web, bạn phải tuân thủ bất kỳ hướng dẫn hoặc quy tắc nào được đăng áp dụng cho các dịch vụ đó.",
+    "registrationTitle": "2. Đăng ký",
+    "registrationContent": "Người dùng có thể đăng ký vào trang web của chúng tôi bằng cách sử dụng chatbot, được dựa trên Gemini. Bằng cách đăng ký, bạn đồng ý cung cấp thông tin chính xác và đầy đủ về bản thân theo yêu cầu của chatbot.",
+    "userConductTitle": "3. Hành vi Người dùng",
+    "userConductContent": "Bạn đồng ý chỉ sử dụng trang web cho các mục đích hợp pháp và theo cách không xâm phạm quyền của người khác, hạn chế hoặc cản trở sự sử dụng và hưởng thụ trang web của người khác.",
+    "privacyPolicyTitle": "4. Chính sách Bảo mật",
+    "privacyPolicyContent": "Chúng tôi cam kết bảo vệ quyền riêng tư của bạn. Vui lòng xem lại Chính sách Bảo mật của chúng tôi, cũng áp dụng cho việc bạn truy cập vào trang web của chúng tôi, để hiểu rõ về các thực hành của chúng tôi.",
+    "changesToTermsTitle": "5. Thay đổi Điều khoản",
+    "changesToTermsContent": "Chúng tôi có quyền thay đổi các điều khoản này bất cứ lúc nào. Việc bạn tiếp tục sử dụng trang web sau các thay đổi như vậy đồng nghĩa với việc bạn chấp nhận các điều khoản mới.",
+    "contactUsTitle": "6. Liên hệ",
+    "contactUsContent": "Nếu bạn có bất kỳ câu hỏi nào về các Điều khoản và Điều kiện này, vui lòng liên hệ với chúng tôi.",
+    "thankYou": "Cảm ơn bạn đã ghé thăm blog của chúng tôi!"
+  },
+  "Footer": {
+    "reserved": "Bản quyền"
+  },
+  "Button": {
+    "createPost": "Tạo bài viết mới",
+    "revalidateImage": "Reload lại ảnh",
+    "revalidatePost": "Reload lại bài viết"
+  },
+  "Rss": {
+    "title": "{websiteName} - Sống Trọn Nhật Bản, Tận Hưởng Từng Khoảnh Khắc",
+    "description": "{websiteName} là một blog giúp bạn sống trọn vẹn ở Nhật Bản, tận hưởng từng khoảnh khắc. Chúng tôi cung cấp cho bạn những thông tin mới nhất, mẹo và thủ thuật để làm cho cuộc sống của bạn ở Nhật Bản thú vị hơn."
+  },
+  "404Page": {
+    "title": "Có gì đó thiếu",
+    "message": "Chúng tôi xin lỗi, nhưng trang bạn đang tìm kiếm có thể đã bị xóa, đổi tên hoặc tạm thời không có sẵn.",
+    "button": "Quay lại trang chủ"
+  }
+}

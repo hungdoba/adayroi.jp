@@ -1,0 +1,125 @@
+{
+  "HomePage": {
+    "title": "Latest Post",
+    "brief": "Helping you 'Live Fully in Japan, Enjoy Every Moment"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, vi {Tiếng Việt} ja {日本語} en {English} other {Unknown}}",
+    "icon": "{locale, select, vi {/flags/vi.svg} ja {/flags/ja.svg} en {/flags/en.svg} other {/flags/unknown.svg}}"
+  },
+  "PostList": {
+    "readMore": "Read full post here"
+  },
+  "FullPost": {
+    "loadingMore": "Loading more posts...",
+    "noMorePost": "No more posts",
+    "tableOfContents": "Table of Contents",
+    "edit": "Edit"
+  },
+  "JlptPage": {
+    "title": "JLPT N1",
+    "brief": "Compilation of JLPT exam questions and answers from various years, helping everyone to study better.",
+    "detail": "Language Knowledge (Vocabulary/Grammar), Reading, Listening",
+    "gotoReading": "Go to Reading",
+    "gotoListening": "Go to Listening"
+  },
+  "SignInPage": {
+    "username": "Your username",
+    "usernamePlaceholder": "Enter your username",
+    "password": "Your password",
+    "passwordPlaceholder": "At least 8 characters",
+    "forgot": "Forgot your password",
+    "signIn": "Sign In",
+    "signUpQuestion": "Don’t have an account yet?",
+    "signUp": "Sign up",
+    "error": "Invalid credentials"
+  },
+  "SignUpPage": {
+    "username": "Your username",
+    "usernamePlaceholder": "At least 3 characters, letters and numbers only",
+    "email": "Your email",
+    "emailPlaceholder": "user@email.com",
+    "password": "Your password",
+    "passwordPlaceholder": "At least 8 characters",
+    "confirmPassword": "Confirm password",
+    "confirmPasswordPlaceholder": "At least 8 characters",
+    "agree": "I agree with the",
+    "term": "terms and conditions",
+    "signUp": "Sign Up",
+    "hadAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
+  "ChangePasswordPage": {
+    "currentPassword": "Current password",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPassword": "New password",
+    "newPasswordPlaceholder": "At least 8 characters",
+    "confirmPassword": "Confirm password",
+    "confirmPasswordPlaceholder": "At least 8 characters",
+    "request": "Send Request"
+  },
+  "Forgot": {
+    "email": "Your email",
+    "emailPlaceholder": "user@email.com",
+    "or": "Or",
+    "signIn": "Sign in here",
+    "request": "Send request"
+  },
+  "Navbar": {
+    "changePassword": "Change password",
+    "signOut": "Sign out",
+    "signIn": "Sign in",
+    "admin": "Admin"
+  },
+  "AskAIPage": {
+    "overview": "This AI chatbot uses the Google Gemini model to help you practice Japanese conversation. You can ask it anything, and it can respond in multiple languages.",
+    "send": "Send a message ...",
+    "title": "Coming soon",
+    "message": "We're working hard to bring you an amazing new website. Stay tuned!",
+    "button": "Back to Home page"
+  },
+  "GalleryPage": {
+    "title": "Gallery",
+    "brief": "Share a few beautiful moments in life, hoping that everyone will find some interesting moments."
+  },
+  "UnAuthorizedPage": {
+    "title": "Unauthorized Access",
+    "message": "We’re sorry, but you do not have the necessary permissions to access this page. Please contact your administrator for further assistance or more information.  ",
+    "button": "Back to Home page"
+  },
+  "TermsAndConditions": {
+    "title": "Terms and Conditions",
+    "intro": "Welcome to our blog! By registering and using our website, you agree to the following terms and conditions:",
+    "acceptanceTitle": "1. Acceptance of Terms",
+    "acceptanceContent": "By accessing and using our website, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using our website's services, you shall be subject to any posted guidelines or rules applicable to such services.",
+    "registrationTitle": "2. Registration",
+    "registrationContent": "Users can register to our website using our chatbot, which is based on Gemini. By registering, you agree to provide accurate and complete information about yourself as prompted by the chatbot.",
+    "userConductTitle": "3. User Conduct",
+    "userConductContent": "You agree to use the website only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the website.",
+    "privacyPolicyTitle": "4. Privacy Policy",
+    "privacyPolicyContent": "We are committed to protecting your privacy. Please review our Privacy Policy, which also governs your visit to our website, to understand our practices.",
+    "changesToTermsTitle": "5. Changes to Terms",
+    "changesToTermsContent": "We reserve the right to modify these terms at any time. Your continued use of the website after any such changes constitutes your acceptance of the new terms.",
+    "contactUsTitle": "6. Contact Us",
+    "contactUsContent": "If you have any questions about these Terms and Conditions, please contact us.",
+    "thankYou": "Thank you for visiting our blog!"
+  },
+  "Footer": {
+    "reserved": "All rights reserved"
+  },
+  "Button": {
+    "createPost": "Create new post",
+    "revalidateImage": "Revalidate Image",
+    "revalidatePost": "Revalidate Post"
+  },
+  "Rss": {
+    "title": "{websiteName} - Live Fully in Japan, Enjoy Every Moment",
+    "description": "{websiteName} is a blog that helps you live fully in Japan, enjoy every moment. We provide you with the latest information, tips, and tricks to make your life in Japan more enjoyable."
+  },
+  "404Page": {
+    "title": "Something's missing",
+    "message": "We’re sorry, but the page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "button": "Back to Home page"
+  }
+}

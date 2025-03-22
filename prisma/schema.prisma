@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model jlpt_chokai {
+  year            Int
+  month           Int
+  mondai_number   Int
+  question_number Int
+  option_1        String?
+  option_2        String?
+  option_3        String?
+  option_4        String?
+  script          String
+  audio_url       String?
+  answer          Int?
+  explain         String?
+  note            String?
+  id              Int     @id(map: "chokai_pkey") @default(autoincrement())
+}
+
+model jlpt_mondai {
+  id             Int    @id
+  year           Int
+  month          Int
+  mondai_number  Int
+  mondai_content String
+  note           String
+}
+
+model jlpt_question {
+  id               Int     @id @default(autoincrement())
+  year             Int
+  month            Int
+  mondai_number    Int
+  question_number  Int
+  question_content String?
+  option_1         String?
+  option_2         String?
+  option_3         String?
+  option_4         String?
+  answer           Int
+  note             String?
+
+  @@unique([year, month, question_number], map: "unique_question")
+}
+
+model jlpt_question_old {
+  year             Int
+  month            Int
+  mondai_number    Int
+  question_number  Int
+  question_content String?
+  option_1         String?
+  option_2         String?
+  option_3         String?
+  option_4         String?
+  answer           Int
+  explanation      String?
+  note             String?
+  id               Int     @id(map: "jlpt_question_pkey_old") @default(autoincrement())
+
+  @@unique([year, month, question_number], map: "unique")
+}
+
+model message {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  message    String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model password_resets {
+  id           Int    @id @default(autoincrement())
+  user_id      Int    @unique
+  token        String @unique @db.VarChar(255)
+  expires_at   Int
+  requested_at Int
+}
+
+model post {
+  id               Int                @id @default(autoincrement())
+  slug             String
+  post_category    String
+  tags             String[]
+  header_image     String
+  created_at       DateTime           @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime           @default(now()) @db.Timestamptz(6)
+  active           Boolean?
+  change_freq      String             @default("yearly")
+  priority         Int                @default(8) @db.SmallInt
+  post_translation post_translation[]
+}
+
+model post_category {
+  id       Int     @id @default(autoincrement())
+  slug     String
+  locale   String
+  title    String
+  describe String
+  active   Boolean
+}
+
+model post_translation {
+  id                Int    @id @default(autoincrement())
+  post_id           Int?
+  language_code     String
+  post_title        String
+  post_brief        String
+  table_of_contents String
+  post_content      String
+  post              post?  @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([post_id, language_code], map: "post_translation_unique")
+}
+
+model subscribe {
+  email      String   @id
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model users {
+  id              Int     @id @default(autoincrement())
+  username        String  @unique @db.VarChar(255)
+  email           String  @unique @db.VarChar(255)
+  hashed_password String  @db.VarChar(255)
+  role            String  @db.VarChar(10)
+  ip_address      String? @db.VarChar(255)
+  created_at      Int
+  updated_at      Int
+}
