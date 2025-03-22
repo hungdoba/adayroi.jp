@@ -3,8 +3,8 @@ import { Link } from '@/i18n/routing';
 import { cn } from '@/utils/cn';
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
-import { FiAnchor, FiChevronUp, FiEdit, FiList } from 'react-icons/fi';
-import ButtonScrollTop from '../common/ButtonScrollTop';
+import ButtonScrollTop from '../ui/button-scroll-top';
+import { Anchor, FilePenLine, List } from 'lucide-react';
 
 interface Props {
   children: ReactNode;
@@ -33,7 +33,7 @@ export default function TableOfContentClient({
       <ButtonScrollTop className="bottom-10" />
       <div className="z-50 fixed right-2 bottom-2 hover:cursor-pointer">
         <div className="p-2 md:p-4" onClick={handleShowTableOfContent}>
-          <FiList />
+          <List />
         </div>
       </div>
 
@@ -60,7 +60,7 @@ export default function TableOfContentClient({
                       href={`/admin/update/${slug}`}
                       className="w-full text-gray-400 dark:text-gray-500"
                     >
-                      <FiEdit />
+                      <FilePenLine />
                     </Link>
                   )}
                   <div
@@ -72,7 +72,7 @@ export default function TableOfContentClient({
                     )}
                     onClick={() => setPin(!pin)}
                   >
-                    <FiAnchor />
+                    <Anchor />
                   </div>
                 </div>
               </div>

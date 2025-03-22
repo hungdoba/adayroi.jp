@@ -7,7 +7,6 @@ import { EMPTY_FORM_STATE } from '@/types/FormState';
 import { toast } from 'sonner';
 import { ButtonSubmit } from '@/components/ui/button-submit';
 
-// TODO: implement this function
 export default function ForgotPassword() {
   const t = useTranslations('Forgot');
   const [formState, formAction] = useActionState(

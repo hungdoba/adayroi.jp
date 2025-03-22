@@ -3,12 +3,12 @@
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import PostThumbnail from '../ui/PostThumbnail';
 import { Locale } from '@/i18n/routing';
 import { useGetPostsByCategory } from '@/hooks/usePosts';
 import { TranslatedPost } from '@/types/TranslatedPost';
 import { useTranslations } from 'next-intl';
 import { post_category } from '@prisma/client';
+import PostThumbnail from './PostThumbnail';
 
 type Props = {
   locale: Locale;

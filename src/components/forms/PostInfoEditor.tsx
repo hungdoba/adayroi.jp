@@ -1,5 +1,5 @@
 import { PostInfo } from '@/types/Post';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 
 interface PostInfoEditorProps {
   mode: 'create' | 'update';

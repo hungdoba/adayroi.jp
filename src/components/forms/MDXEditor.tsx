@@ -1,61 +1,62 @@
 'use client';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
-import toast from 'react-hot-toast';
 import { uploadImage } from '@/actions/image';
+import { toast } from 'sonner';
+import type { Options as EasyMDEOptions } from 'easymde';
 
-// Dynamically import 'react-simplemde-editor' to ensure it's only loaded client-side.
 const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
 
-// Dynamically import the CSS to avoid bundling it in the initial load.
 if (typeof window !== 'undefined') {
   import('easymde/dist/easymde.min.css');
 }
 
-interface Props {
+interface MDXEditorProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export default function MDXEditor({ value, onChange }: Props) {
+export default function MDXEditor({ value, onChange }: MDXEditorProps) {
   const handleImageUpload = async (
     file: File,
     onSuccess: (url: string) => void,
-    onError: (message: string) => void
+    onError: (error: string) => void
   ) => {
-    if (file) {
-      try {
-        const formData = new FormData();
-        formData.append('image', file);
-        formData.append(
-          'folder',
-          process.env.NEXT_PUBLIC_CLOUDINARY_POST_FOLDER!
-        );
-        const imageUrl = await uploadImage(formData);
-        if (imageUrl) {
-          onSuccess(imageUrl);
-          toast.success('Upload image success');
-        } else {
-          toast.error('Upload image fail');
-        }
-      } catch (error) {
-        console.error('Error uploading image:', error);
-        onError('Upload image error, maybe size of image too big');
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append(
+        'folder',
+        process.env.NEXT_PUBLIC_CLOUDINARY_POST_FOLDER ?? 'posts'
+      );
+
+      const imageUrl = await uploadImage(formData);
+
+      if (imageUrl) {
+        onSuccess(imageUrl);
+        toast.success('Image uploaded successfully');
+      } else {
+        toast.error('Failed to upload image');
+        onError('Upload failed');
       }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      onError('Error uploading image. The image may be too large.');
     }
   };
 
-  const defaultOptions = useMemo(() => {
-    return {
+  const editorOptions = useMemo<EasyMDEOptions>(
+    () => ({
       autofocus: true,
       lineNumbers: true,
       spellChecker: true,
       uploadImage: true,
       imageUploadFunction: handleImageUpload,
-    } as EasyMDE.Options;
-  }, []);
+    }),
+    []
+  );
 
   return (
     <div className="w-full prose dark:prose-invert prose-headings:text-black prose-a:no-underline prose-a:text-cyan-500 prose-p:text-black prose-li:text-black prose-strong:text-black">
@@ -63,7 +64,7 @@ export default function MDXEditor({ value, onChange }: Props) {
         className="editor-text-black editor-toolbar-gray"
         value={value}
         onChange={onChange}
-        options={defaultOptions}
+        options={editorOptions}
       />
     </div>
   );

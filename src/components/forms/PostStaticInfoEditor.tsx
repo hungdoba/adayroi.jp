@@ -1,15 +1,15 @@
-import Link from "next/link";
-import toast from "react-hot-toast";
-import { ChangeEvent, useState } from "react";
-import { FiTrash, FiUploadCloud } from "react-icons/fi";
-import { post_category } from "@prisma/client";
-import { PostStatic } from "@/types/Post";
-import { MenuItem } from "@/types/MenuItem";
-import { Locale } from "@/i18n/routing";
-import { deleteImage, uploadImage } from "@/actions/image";
-import Dropdown from "../common/Dropdown";
-import LocaleList from "../common/LocaleList";
-import { cn } from "@/utils/cn";
+import Link from 'next/link';
+import { ChangeEvent, useState } from 'react';
+import { post_category } from '@prisma/client';
+import { PostStatic } from '@/types/Post';
+import { MenuItem } from '@/types/MenuItem';
+import { Locale } from '@/i18n/routing';
+import { deleteImage, uploadImage } from '@/actions/image';
+import { cn } from '@/utils/cn';
+import { toast } from 'sonner';
+import LocaleList from '../ui/locale-list';
+import { CloudUpload, Trash2 } from 'lucide-react';
+import Dropdown from '../ui/dropdown';
 
 interface Props {
   categories: post_category[];
@@ -33,7 +33,7 @@ const PostStaticInfoEditor: React.FC<Props> = ({
     }));
 
   const handleSlugChange = (slug: string) => {
-    slug = slug.toLowerCase().trim().replace(/\s+/g, "-");
+    slug = slug.toLowerCase().trim().replace(/\s+/g, '-');
     onChange({ ...postStatic, slug });
   };
 
@@ -57,17 +57,17 @@ const PostStaticInfoEditor: React.FC<Props> = ({
       if (file) {
         try {
           const formData = new FormData();
-          formData.append("image", file);
+          formData.append('image', file);
           formData.append(
-            "folder",
+            'folder',
             process.env.NEXT_PUBLIC_CLOUDINARY_POST_FOLDER!
           );
           const imageUrl = await uploadImage(formData);
           if (imageUrl) onChange({ ...postStatic, headerImage: imageUrl });
-          else toast.error("Upload image failed");
+          else toast.error('Upload image failed');
         } catch (error) {
-          console.error("Error uploading image:", error);
-          toast.error("Upload image failed");
+          console.error('Error uploading image:', error);
+          toast.error('Upload image failed');
         }
       }
     }
@@ -87,8 +87,8 @@ const PostStaticInfoEditor: React.FC<Props> = ({
   async function handleDeleteImage(event: React.DragEvent<HTMLLabelElement>) {
     SetDeleteSuccess(null);
     event.preventDefault();
-    const text = event.dataTransfer.getData("text/plain");
-    const isHeaderImage = text.startsWith("https");
+    const text = event.dataTransfer.getData('text/plain');
+    const isHeaderImage = text.startsWith('https');
 
     let publicId = extractPublicId(text);
     if (publicId) {
@@ -96,9 +96,9 @@ const PostStaticInfoEditor: React.FC<Props> = ({
       const result = await deleteImage(publicId);
       SetDeleteSuccess(result);
       if (result) {
-        toast.success("Delete image success");
+        toast.success('Delete image success');
       } else {
-        toast.error("Delete image failed");
+        toast.error('Delete image failed');
       }
       if (isHeaderImage) {
         if (result) {
@@ -106,7 +106,7 @@ const PostStaticInfoEditor: React.FC<Props> = ({
         }
       }
     } else {
-      toast.error("Can not find the public id");
+      toast.error('Can not find the public id');
     }
   }
 
@@ -140,7 +140,7 @@ const PostStaticInfoEditor: React.FC<Props> = ({
         <div className="relative w-full mb-5 group">
           <label className="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
             <div className="flex flex-col items-center justify-center pt-5 pb-4">
-              <FiUploadCloud />
+              <CloudUpload />
               {headerImage && (
                 <Link
                   className="text-blue-500"
@@ -170,12 +170,12 @@ const PostStaticInfoEditor: React.FC<Props> = ({
           >
             <div
               className={cn(
-                "flex flex-col items-center justify-center pt-5 pb-4",
+                'flex flex-col items-center justify-center pt-5 pb-4',
                 deleteSuccess != null &&
-                  (deleteSuccess ? "text-green-500" : "text-red-500")
+                  (deleteSuccess ? 'text-green-500' : 'text-red-500')
               )}
             >
-              <FiTrash />
+              <Trash2 />
             </div>
           </label>
         </div>
