@@ -1,4 +1,5 @@
 'use server';
+
 import prisma from '@/libs/prisma';
 import { Locale } from '@/i18n/routing';
 import { TranslatedPost } from '@/types/TranslatedPost';
@@ -53,9 +54,7 @@ async function fetchPosts({
   category?: string;
 }): Promise<TranslatedPost[]> {
   const filters: { active: boolean; post_category?: string } = { active: true };
-  if (category) {
-    filters.post_category = category;
-  }
+  if (category) filters.post_category = category;
 
   const posts = await prisma.post.findMany({
     where: filters,
@@ -85,7 +84,6 @@ async function getFullPost(
   return post ? convertFullPostToTranslatedPost(post) : null;
 }
 
-// For admin update post -------------------------------------------------------
 export async function updatePost(formData: FormData): Promise<boolean> {
   const id = formData.get('id') as string;
   const slug = formData.get('slug') as string;
@@ -97,24 +95,17 @@ export async function updatePost(formData: FormData): Promise<boolean> {
   const active = formData.get('active') === 'true';
   const translations = JSON.parse(formData.get('translations') as string);
 
-  try {
-    // Validate incoming data (simplified validation)
-    if (!id || !slug || !post_category || !translations) {
-      throw new Error('Missing required fields');
-    }
+  if (!id || !slug || !post_category || !translations) {
+    console.error('Missing required fields');
+    return false;
+  }
 
+  try {
     await prisma.post.update({
       where: { id: Number(id) },
-      data: {
-        slug,
-        post_category,
-        tags,
-        header_image,
-        active,
-      },
+      data: { slug, post_category, tags, header_image, active },
     });
 
-    // Upsert translations
     await Promise.all(
       translations.map((translation: post_translation) =>
         prisma.post_translation.upsert({
@@ -161,13 +152,11 @@ export async function createPost(
   const active = formData.get('active') === 'true';
   const translations = JSON.parse(formData.get('translations') as string);
 
-  try {
-    // Validate incoming data (simplified validation)
-    if (!slug || !post_category || !translations) {
-      throw new Error('Missing required fields');
-    }
+  if (!slug || !post_category || !translations) {
+    throw new Error('Missing required fields');
+  }
 
-    // Create a new post object
+  try {
     const newPost = await prisma.post.create({
       data: {
         slug,
@@ -187,9 +176,7 @@ export async function createPost(
           })),
         },
       },
-      include: {
-        post_translation: true,
-      },
+      include: { post_translation: true },
     });
 
     return { message: 'Post created successfully', data: newPost };
@@ -201,11 +188,11 @@ export async function createPost(
 
 export async function getPostData(slug: string) {
   const data = await prisma.post.findMany({
-    where: { slug: slug },
+    where: { slug },
     include: { post_translation: true },
   });
-  const postData = data[0];
 
+  const postData = data[0];
   const postStatic: PostStatic = {
     id: postData.id,
     language: 'vi',
@@ -230,19 +217,17 @@ export async function getPostData(slug: string) {
 
   return { postStatic, postInfo: info, postContent: content };
 }
-// End For admin update post ---------------------------------------------------
 
-// Cache function
 export const getPostsCache = unstable_cache(
   async (locale: Locale, pageParam: number) =>
-    fetchPosts({ locale: locale, pageParam: pageParam }),
+    fetchPosts({ locale, pageParam }),
   ['posts'],
   { tags: ['posts'] }
 );
 
 export const getPostsByCategoryCache = unstable_cache(
   async (locale: Locale, category: string, pageParam: number) =>
-    fetchPosts({ locale: locale, category: category, pageParam: pageParam }),
+    fetchPosts({ locale, category, pageParam }),
   ['posts'],
   { tags: ['posts'] }
 );

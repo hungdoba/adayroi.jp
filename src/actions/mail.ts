@@ -20,21 +20,20 @@ export async function sendMail(
   try {
     const info = await transporter.sendMail({
       from: process.env.MAIL_FROM,
-      to: to,
-      subject: subject,
-      text: text,
-      html: html,
+      to,
+      subject,
+      text,
+      html,
     });
-    console.log(
-      'Message sent: %s',
-      info.accepted,
-      info.response,
-      info.envelope
-    );
+
+    console.log('Message sent:', {
+      accepted: info.accepted,
+      response: info.response,
+      envelope: info.envelope,
+    });
 
     return true;
   } catch (err) {
-    const error = err as Error;
-    return error.message;
+    return (err as Error).message;
   }
 }

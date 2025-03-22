@@ -5,56 +5,52 @@ import { CloudImage, CloudinaryResource } from '@/types/CloudImage';
 import imagemin from 'imagemin';
 import { unstable_cache } from 'next/cache';
 
-// For admin create, update post
 export async function deleteImage(public_id: string): Promise<boolean> {
   try {
-    await cloudinary.uploader.destroy(public_id, function (result) {
-      return result;
-    });
+    await cloudinary.uploader.destroy(public_id);
     return true;
-  } catch {
+  } catch (error) {
+    console.error('Error deleting image:', error);
     return false;
   }
 }
 
-// For admin create, update post
 export async function uploadImage(formData: FormData): Promise<string> {
-  const file = formData.get('image') as File;
-  const folder = formData.get('folder') as string;
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = new Uint8Array(arrayBuffer);
+  try {
+    const file = formData.get('image') as File;
+    const folder = formData.get('folder') as string;
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
 
-  const now = new Date();
-  const localeTimestamp = now.toLocaleString().replace(/[^\w]/g, '_');
+    const now = new Date();
+    const localeTimestamp = now.toLocaleString().replace(/[^\w]/g, '_');
 
-  const result = await new Promise<{ secure_url: string }>(
-    (resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          {
-            folder: folder ?? process.env.NEXT_PUBLIC_CLOUDINARY_POST_FOLDER,
-            public_id: `image_${localeTimestamp}`,
-            tags: ['asiatips.net app route'],
-          },
-          (error, result) => {
-            if (error) {
-              reject(error);
-              return;
-            }
-            if (result) {
-              resolve(result);
-            } else {
+    const result = await new Promise<{ secure_url: string }>(
+      (resolve, reject) => {
+        cloudinary.uploader
+          .upload_stream(
+            {
+              folder: folder || process.env.NEXT_PUBLIC_CLOUDINARY_POST_FOLDER,
+              public_id: `image_${localeTimestamp}`,
+              tags: ['asiatips.net app route'],
+            },
+            (error, result) => {
+              if (error) return reject(error);
+              if (result) return resolve(result);
               reject(new Error('Upload result is undefined'));
             }
-          }
-        )
-        .end(buffer);
-    }
-  );
-  return result.secure_url;
+          )
+          .end(buffer);
+      }
+    );
+
+    return result.secure_url;
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw error;
+  }
 }
 
-// Has cache function
 async function getImagesCount(): Promise<number> {
   try {
     const results = await cloudinary.search
@@ -64,16 +60,13 @@ async function getImagesCount(): Promise<number> {
       .max_results(500)
       .execute();
 
-    const totalCount = results.total_count;
-
-    return totalCount;
+    return results.total_count;
   } catch (error) {
-    console.log('Error fetching image count:', error);
-    return 1;
+    console.error('Error fetching image count:', error);
+    return 0;
   }
 }
 
-// Has cache function
 async function getAllImages(): Promise<CloudImage[]> {
   try {
     const results = await cloudinary.search
@@ -84,7 +77,7 @@ async function getAllImages(): Promise<CloudImage[]> {
       .max_results(500)
       .execute();
 
-    const cleanResult: CloudImage[] = await Promise.all(
+    return Promise.all(
       results.resources.map(
         async (result: CloudinaryResource, index: number) => ({
           id: index,
@@ -97,40 +90,36 @@ async function getAllImages(): Promise<CloudImage[]> {
         })
       )
     );
-
-    return cleanResult;
   } catch (error) {
-    console.error('Error fetching image thumbnails:', error);
+    console.error('Error fetching images:', error);
     return [];
   }
 }
 
-// For gallery
 async function getBlurDataUrl(
   public_id: string,
   format: string
 ): Promise<string> {
-  const response = await fetch(
-    `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/f_jpg,w_8,q_70/${public_id}.${format}`
-  );
-  const buffer = await response.arrayBuffer();
-  const minified = await imagemin.buffer(Buffer.from(buffer));
+  try {
+    const response = await fetch(
+      `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/f_jpg,w_8,q_70/${public_id}.${format}`
+    );
+    const buffer = await response.arrayBuffer();
+    const minified = await imagemin.buffer(Buffer.from(buffer));
 
-  const url = `data:image/jpeg;base64,${Buffer.from(minified).toString(
-    'base64'
-  )}`;
-  return url;
+    return `data:image/jpeg;base64,${Buffer.from(minified).toString('base64')}`;
+  } catch (error) {
+    console.error('Error generating blur data URL:', error);
+    return '';
+  }
 }
 
-// Cache function
-export const getAllImagesCache = unstable_cache(
-  async () => getAllImages(),
-  ['images'],
-  { tags: ['images'] }
-);
+export const getAllImagesCache = unstable_cache(getAllImages, ['images'], {
+  tags: ['images'],
+});
 
 export const getImagesCountCache = unstable_cache(
-  async () => getImagesCount(),
+  getImagesCount,
   ['images-count'],
   { tags: ['images'] }
 );

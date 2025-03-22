@@ -1,6 +1,4 @@
 import { MetadataRoute } from 'next';
-import { JlptTime } from '@/types/Jlpt';
-import { getJLPTTimesCache } from '@/actions/jlpt';
 import { getImagesCountCache } from '@/actions/image';
 import { routing, getPathname } from '@/i18n/routing';
 import { getAllPostsSiteMapCache } from '@/actions/post';
@@ -27,10 +25,9 @@ const staticPages = [
 const currentDate = new Date().toISOString();
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [blogPages, galleryPages, jlptPages] = await Promise.all([
+  const [blogPages, galleryPages] = await Promise.all([
     getBlogPages(),
     getGalleryPages(),
-    getJlptPages(),
   ]);
 
   // Merge all pages into a single array using concat for efficiency
@@ -41,29 +38,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changefreq: 'never',
       priority: 1,
     }))
-    .concat(blogPages, galleryPages, jlptPages);
+    .concat(blogPages, galleryPages);
 
   // Return sitemap entries after processing them
   return allPages.map(getEntry);
-}
-
-async function getJlptPages() {
-  const times = await getJLPTTimesCache();
-
-  return times.flatMap((time: JlptTime) => [
-    {
-      href: `/jlpt/n1/${time.year}/${time.month}/listen`,
-      lastmod: currentDate,
-      changefreq: 'never',
-      priority: 0.7,
-    },
-    {
-      href: `/jlpt/n1/${time.year}/${time.month}/read`,
-      lastmod: currentDate,
-      changefreq: 'never',
-      priority: 0.7,
-    },
-  ]);
 }
 
 async function getGalleryPages() {
