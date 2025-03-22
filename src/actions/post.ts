@@ -69,7 +69,7 @@ async function fetchPosts({
   return mapPostsToTranslatedPosts(posts);
 }
 
-async function getFullPost(
+export async function getFullPost(
   locale: Locale,
   category: string,
   slug: string
