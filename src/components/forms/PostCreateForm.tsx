@@ -1,6 +1,5 @@
 'use client';
 
-import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import MDXEditor from '@/components/forms/MDXEditor';
 import { post_category } from '@prisma/client';
@@ -9,6 +8,7 @@ import PostInfoEditor from './PostInfoEditor';
 import { routing } from '@/i18n/routing';
 import { createPost, updatePost } from '@/actions/post';
 import PostStaticInfoEditor from './PostStaticInfoEditor';
+import { toast } from 'sonner';
 
 interface Props {
   mode: 'create' | 'update';
