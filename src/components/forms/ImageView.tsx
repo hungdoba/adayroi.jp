@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { CloudImage } from "@/types/CloudImage";
-import { useEffect, useRef, useState } from "react";
-import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
-import { cn } from "@/utils/cn";
+import Link from 'next/link';
+import Image from 'next/image';
+import { CloudImage } from '@/types/CloudImage';
+import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/utils/cn';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface Props {
   images: CloudImage[];
@@ -23,11 +23,11 @@ export default function ImageView({ images, initSelectedId }: Props) {
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("wheel", handleWheel);
+      container.addEventListener('wheel', handleWheel);
     }
     return () => {
       if (container) {
-        container.removeEventListener("wheel", handleWheel);
+        container.removeEventListener('wheel', handleWheel);
       }
     };
   }, []);
@@ -54,7 +54,7 @@ export default function ImageView({ images, initSelectedId }: Props) {
 
       container.scrollTo({
         left: scrollPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -83,8 +83,8 @@ export default function ImageView({ images, initSelectedId }: Props) {
             <div
               key={index}
               className={cn(
-                "absolute inset-0 transition-opacity duration-700 ease-in-out",
-                image.id === selectedId ? "opacity-100" : "opacity-0"
+                'absolute inset-0 transition-opacity duration-700 ease-in-out',
+                image.id === selectedId ? 'opacity-100' : 'opacity-0'
               )}
             >
               {/* Main image */}
@@ -95,10 +95,10 @@ export default function ImageView({ images, initSelectedId }: Props) {
                 fill
                 sizes="100vw"
                 style={{
-                  objectFit: "cover",
+                  objectFit: 'cover',
                 }}
                 className="transform rounded-lg transition-opacity duration-700 ease-in-out opacity-0"
-                onLoadingComplete={(img) => img.classList.remove("opacity-0")}
+                onLoadingComplete={(img) => img.classList.remove('opacity-0')}
               />
             </div>
           ))}
@@ -110,7 +110,7 @@ export default function ImageView({ images, initSelectedId }: Props) {
             className="absolute top-0 left-0 p-2 bg-gray-700 bg-opacity-70 text-white rounded-full m-2"
           >
             <div className="w-4 h-4 flex justify-center items-center">
-              <FiX />
+              <X />
             </div>
           </Link>
 
@@ -121,7 +121,7 @@ export default function ImageView({ images, initSelectedId }: Props) {
             onClick={handleBack}
           >
             <div className="w-4 h-4 flex justify-center items-center">
-              <FiChevronLeft />
+              <ChevronLeft />
             </div>
           </button>
 
@@ -132,7 +132,7 @@ export default function ImageView({ images, initSelectedId }: Props) {
             onClick={handleNext}
           >
             <div className="w-4 h-4 flex justify-center items-center">
-              <FiChevronRight />
+              <ChevronRight />
             </div>
           </button>
         </div>
@@ -154,14 +154,14 @@ export default function ImageView({ images, initSelectedId }: Props) {
                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_fill,h_200,w_200/${image.public_id}.${image.format}`}
                 alt={`Thumbnail ${index}`}
                 className={cn(
-                  "rounded-lg transition-transform duration-300",
+                  'rounded-lg transition-transform duration-300',
                   image.id === selectedId &&
-                    "transform scale-105 border-2 border-blue-500"
+                    'transform scale-105 border-2 border-blue-500'
                 )}
                 fill
                 sizes="96px"
                 style={{
-                  objectFit: "cover",
+                  objectFit: 'cover',
                 }}
               />
             </div>

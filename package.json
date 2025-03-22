@@ -11,10 +11,12 @@
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "@tanstack/react-query": "^5.69.0",
+    "@types/imagemin": "^9.0.1",
     "@types/nodemailer": "^6.4.17",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.6.0",
     "clsx": "^2.1.1",
+    "imagemin": "^9.0.1",
     "lucide-react": "^0.483.0",
     "next": "15.2.3",
     "next-auth": "^4.24.11",

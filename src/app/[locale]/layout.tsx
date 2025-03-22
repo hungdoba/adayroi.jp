@@ -129,7 +129,9 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${noto_sans_jp.className} antialiased scroll-smooth`}>
+      <body
+        className={`${noto_sans_jp.className} antialiased scroll-smooth bg-white dark:bg-gray-900`}
+      >
         <NextIntlClientProvider messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
