@@ -7,17 +7,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/jlpt',
+        source: '/:locale/jlpt',
         destination: 'https://jlpt.adayroi.jp/',
         permanent: true,
       },
       {
-        source: '/news',
+        source: '/:locale/news',
         destination: 'https://news.adayroi.jp/',
         permanent: true,
       },
       {
-        source: '/ai',
+        source: '/:locale/ai',
         destination: 'https://comtor.adayroi.jp/',
         permanent: true,
       },
