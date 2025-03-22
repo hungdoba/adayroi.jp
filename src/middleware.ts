@@ -16,8 +16,10 @@ const publicPages = new Set([
   'password',
   'unauthorized',
   'rss.xml',
-  'news',
+  'tips',
   'jlpt',
+  'investment',
+  'news',
 ]);
 
 const authMiddleware = withAuth((req) => intlMiddleware(req));
