@@ -41,7 +41,6 @@ const Onthispage = ({
     <div className={cn('hidden md:block ', className)}>
       {links?.length != 0 && (
         <div className="sticky top-10">
-          <h2>Mục lục</h2>
           <ul className="not-prose text-xs">
             {links &&
               links.map((link) => {

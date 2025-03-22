@@ -1,21 +1,7 @@
-// import { unified } from 'unified';
-// import remarkGfm from 'remark-gfm';
-// import remarkParse from 'remark-parse';
-// import remarkRehype from 'remark-rehype';
-// import rehypeSlug from 'rehype-slug';
-// import rehypeStringify from 'rehype-stringify';
-// import rehypeHighlight from 'rehype-highlight';
-// import remarkFrontmatter from 'remark-frontmatter';
-// import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-
-// import Image from 'next/image';
 import { Locale } from '@/i18n/routing';
-import { getFullPost, getFullPostCache } from '@/actions/post';
-// import { MDXRemote } from 'next-mdx-remote/rsc';
-import TableOfContent from '@/components/layout/TableOfContent';
+import { getFullPostCache } from '@/actions/post';
 import TableOfContentClient from '@/components/layout/TableOfContentClient';
 import { adminInfo } from '@/utils/session';
-// import { notFound } from 'next/navigation';
 
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
@@ -54,7 +40,7 @@ interface Props {
 export default async function FullPost({ params }: Props) {
   const { locale, category, slug } = await params;
   const admin = await adminInfo();
-  const fullPost = await getFullPost(locale, category, slug);
+  const fullPost = await getFullPostCache(locale, category, slug);
 
   if (!fullPost) {
     notFound();
@@ -71,7 +57,7 @@ export default async function FullPost({ params }: Props) {
           </h1>
           <Image
             className="w-full rounded"
-            width={1920} // Consider dynamic sizing if possible
+            width={1920}
             height={1280}
             src={fullPost.header_image}
             alt="Article Image"
@@ -85,10 +71,8 @@ export default async function FullPost({ params }: Props) {
           />
         </div>
 
-        {/* Table of Content */}
         <div className="w-full md:w-1/4">
           <TableOfContentClient isAdmin={admin != false} slug={slug}>
-            {/* <TableOfContent data={fullPost} /> */}
             <Onthispage
               className="text-sm w-[100%]"
               htmlContent={htmlContent}

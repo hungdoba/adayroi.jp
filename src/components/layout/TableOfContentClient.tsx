@@ -19,7 +19,7 @@ export default function TableOfContentClient({
 }: Props) {
   const t = useTranslations('FullPost');
 
-  const [pin, setPin] = useState(false);
+  const [pin, setPin] = useState(true);
   const [visible, setVisible] = useState(false);
 
   function handleShowTableOfContent(): void {
