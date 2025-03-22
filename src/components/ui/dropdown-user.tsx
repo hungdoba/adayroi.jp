@@ -72,7 +72,7 @@ export default function DropdownUser({ session, className }: Props) {
                 {t('changePassword')}
               </Link>
             </li>
-            {/* {session.user?.role === 'admin' && (
+            {session.user?.role === 'admin' && (
               <li>
                 <Link
                   href="/admin"
@@ -81,7 +81,7 @@ export default function DropdownUser({ session, className }: Props) {
                   {t('admin')}
                 </Link>
               </li>
-            )} */}
+            )}
           </ul>
           <div className="py-1">
             <ButtonSignOut />
@@ -89,12 +89,11 @@ export default function DropdownUser({ session, className }: Props) {
         </div>
       </div>
       <div className="md:hidden flex flex-col justify-center items-center text-blue-600 dark:text-blue-500">
-        {/* TODO */}
-        {/* {session.user?.role == 'admin' && (
+        {session.user?.role == 'admin' && (
           <Link href="/admin" className="block">
             {t('admin')}
           </Link>
-        )} */}
+        )}
         <Link className="block mt-6 md:mt-0" href="/password/change">
           {t('changePassword')}
         </Link>
