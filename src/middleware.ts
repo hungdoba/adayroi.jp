@@ -14,11 +14,10 @@ const publicPages = new Set([
   'gallery',
   'terms',
   'password',
-  'tips',
-  'jlpt',
-  'investment',
   'unauthorized',
   'rss.xml',
+  'news',
+  'jlpt',
 ]);
 
 const authMiddleware = withAuth((req) => intlMiddleware(req));
