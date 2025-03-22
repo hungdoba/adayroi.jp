@@ -1,7 +1,7 @@
 import { Locale } from '@/i18n/routing';
 import NavbarClient from './NavbarClient';
 import { getServerSession } from 'next-auth';
-import { getCategories } from '@/actions/category';
+import { getCategoriesCache } from '@/actions/category';
 import { authOptions } from '@/utils/auth';
 import { post_category } from '@prisma/client';
 
@@ -12,7 +12,7 @@ type Props = {
 export default async function Navbar({ locale }: Props) {
   const session = await getServerSession(authOptions);
 
-  const categories = await getCategories(locale);
+  const categories = await getCategoriesCache(locale);
 
   const menuItems = categories.map((category: post_category) => ({
     href: category.slug,
