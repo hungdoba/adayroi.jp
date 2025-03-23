@@ -3,6 +3,7 @@ import Dropdown from './dropdown';
 import { MenuItem } from '@/types/MenuItem';
 import { useLocale, useTranslations } from 'next-intl';
 import { Locale, routing } from '@/i18n/routing';
+import { SelectUserMenu } from './select-locale';
 
 interface Props {
   onLocaleChange: (locale: Locale) => void;

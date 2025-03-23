@@ -7,7 +7,7 @@ import { Session } from 'next-auth';
 import { cn } from '@/utils/cn';
 import ThemeSwitcher from '@/components/ui/theme-switcher';
 import LocaleSwitcher from '@/components/ui/locale-switcher';
-import DropdownUser from '@/components/ui/dropdown-user';
+import { DropdownMenuUser } from '../ui/dropdown-user-menu';
 
 interface Props {
   menuItems: NavbarMenuItem[];
@@ -107,7 +107,8 @@ export default function NavbarClient({ menuItems, session }: Props) {
               </ul>
             </div>
 
-            <DropdownUser session={session} />
+            <DropdownMenuUser session={session} />
+            {/* <SelectUserMenu session={session} /> */}
           </div>
         </div>
 
