@@ -69,7 +69,7 @@ async function fetchPosts({
   return mapPostsToTranslatedPosts(posts);
 }
 
-export async function getFullPost(
+async function getFullPost(
   locale: Locale,
   category: string,
   slug: string
@@ -186,7 +186,7 @@ export async function createPost(
   }
 }
 
-export async function getPostData(slug: string) {
+async function getPostData(slug: string) {
   const data = await prisma.post.findMany({
     where: { slug },
     include: { post_translation: true },
@@ -243,4 +243,10 @@ export const getAllPostsSiteMapCache = unstable_cache(
   async (locale: Locale) => fetchAllPostsSiteMap(locale),
   ['posts-sitemap'],
   { tags: ['posts-sitemap'] }
+);
+
+export const getPostDataCache = unstable_cache(
+  async (slug: string) => getPostData(slug),
+  ['posts'],
+  { tags: ['posts'] }
 );

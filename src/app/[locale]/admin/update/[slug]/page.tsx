@@ -1,5 +1,5 @@
 import { getCategoriesCache } from '@/actions/category';
-import { getPostData } from '@/actions/post';
+import { getPostDataCache } from '@/actions/post';
 import PostForm from '@/components/forms/PostCreateForm';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 export default async function Update({ params }: Props) {
   const { slug } = await params;
   const categories = await getCategoriesCache();
-  const { postStatic, postInfo, postContent } = await getPostData(slug);
+  const { postStatic, postInfo, postContent } = await getPostDataCache(slug);
   return (
     <PostForm
       mode="update"

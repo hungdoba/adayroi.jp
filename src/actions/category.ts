@@ -4,7 +4,7 @@ import { Locale } from '@/i18n/routing';
 import prisma from '@/libs/prisma';
 import { unstable_cache } from 'next/cache';
 
-export async function getCategories(locale?: Locale) {
+async function getCategories(locale?: Locale) {
   return prisma.post_category.findMany({
     orderBy: { id: 'asc' },
     where: {
@@ -14,7 +14,7 @@ export async function getCategories(locale?: Locale) {
   });
 }
 
-export async function getCategory(locale: Locale, slug: string) {
+async function getCategory(locale: Locale, slug: string) {
   return prisma.post_category.findFirst({
     orderBy: { id: 'asc' },
     where: {
@@ -27,6 +27,12 @@ export async function getCategory(locale: Locale, slug: string) {
 
 export const getCategoriesCache = unstable_cache(
   async (locale?: Locale) => getCategories(locale),
+  ['categories'],
+  { tags: ['categories'] }
+);
+
+export const getCategoryCache = unstable_cache(
+  async (locale: Locale, slug: string) => getCategory(locale, slug),
   ['categories'],
   { tags: ['categories'] }
 );
