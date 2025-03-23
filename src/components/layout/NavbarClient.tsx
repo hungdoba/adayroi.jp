@@ -91,8 +91,8 @@ export default function NavbarClient({ menuItems, session }: Props) {
             {/* Menu options */}
             <div className="text-gray-600 dark:text-gray-300 md:pr-4 md:w-auto w-full md:pt-0">
               <ul className="tracking-wide font-medium md:text-sm flex-col flex md:flex-row gap-6 md:gap-0">
-                {menuItems.map((item) => (
-                  <li key={item.href}>
+                {menuItems.map((item, index) => (
+                  <li key={index}>
                     <Link
                       href={item.href}
                       className={cn(
