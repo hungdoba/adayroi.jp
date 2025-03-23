@@ -49,7 +49,7 @@ export default async function FullPost({ params }: Props) {
   const htmlContent = await processMarkdown(fullPost.post_content);
 
   return (
-    <div className="container mx-auto w-full my-4 md:max-w-5xl">
+    <div className="mx-auto w-full p-4">
       <div className="flex flex-col md:flex-row">
         <div className="w-full md:w-3/4">
           <h1 className="text-4xl font-bold my-4">
@@ -71,7 +71,7 @@ export default async function FullPost({ params }: Props) {
           />
         </div>
 
-        <div className="w-full md:w-1/4">
+        <div className="w-full md:w-1/4 bg-red-400">
           <TableOfContentClient isAdmin={admin != false} slug={slug}>
             <Onthispage
               className="text-sm w-[100%]"

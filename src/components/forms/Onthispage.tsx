@@ -38,7 +38,7 @@ const Onthispage = ({
   }, [htmlContent]);
 
   return (
-    <div className={cn('hidden md:block ', className)}>
+    <div className={cn('md:block ', className)}>
       {links?.length != 0 && (
         <div className="sticky top-10">
           <ul className="not-prose text-xs">

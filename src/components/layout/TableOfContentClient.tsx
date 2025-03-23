@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 import ButtonScrollTop from '../ui/button-scroll-top';
-import { Anchor, FilePenLine, List } from 'lucide-react';
+import { Anchor, FilePenLine, List, X } from 'lucide-react';
 
 interface Props {
   children: ReactNode;
@@ -29,7 +29,6 @@ export default function TableOfContentClient({
 
   return (
     <div className={cn('md:ml-8 md:top-4', pin ? 'md:sticky' : 'md:static')}>
-      {/* Button show table of content and scroll to top */}
       <ButtonScrollTop className="bottom-10" />
       <div className="z-50 fixed right-2 bottom-2 hover:cursor-pointer">
         <div className="p-2 md:p-4" onClick={handleShowTableOfContent}>
@@ -37,10 +36,9 @@ export default function TableOfContentClient({
         </div>
       </div>
 
-      {/* Table of content */}
       <div
         className={cn(
-          'z-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white bg-opacity-95 dark:bg-slate-800 dark:bg-opacity-95 md:bg-transparent md:dark:bg-transparent',
+          'z-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white dark:bg-slate-800',
           !visible && 'hidden md:block'
         )}
       >
@@ -48,7 +46,7 @@ export default function TableOfContentClient({
           {/* Modal content */}
           <div className="relative rounded-lg">
             {/* Modal header */}
-            <div className="flex items-center justify-between p-4 md:p-0 md:pb-4 border-b rounded-t dark:border-gray-600">
+            <div className="flex items-center justify-between pb-4 md:p-0 border-b rounded-t dark:border-gray-600">
               <div className="w-full flex flex-row items-center justify-between">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                   {t('tableOfContents')}
@@ -76,30 +74,9 @@ export default function TableOfContentClient({
                   </div>
                 </div>
               </div>
-
-              {/* Button Close */}
-              <button
-                type="button"
-                className="md:hidden text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                onClick={() => setVisible(!visible)}
-                data-modal-hide="default-modal"
-              >
-                <svg
-                  className="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-              </button>
+              <div className="ml-4">
+                <X onClick={() => setVisible(!visible)} />
+              </div>
             </div>
 
             {/* Table of Contents */}
