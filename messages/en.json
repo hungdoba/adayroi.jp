@@ -121,5 +121,10 @@
     "title": "Something's missing",
     "message": "We’re sorry, but the page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
     "button": "Back to Home page"
+  },
+  "ThemeSwitcher": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
   }
 }

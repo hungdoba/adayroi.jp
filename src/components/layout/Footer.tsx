@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { useTranslations } from 'next-intl';
-import ThemeSwitcher from '@/components/ui/theme-switcher';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 export default function Footer() {
@@ -38,9 +37,6 @@ export default function Footer() {
         <div className="mb-2 flex flex-row items-center space-x-2 text-sm">
           <div>{` • `}</div>
           <div>{process.env.NEXT_PUBLIC_WEBSITE_FULL_NAME}</div>
-          <Suspense fallback={<p>...</p>}>
-            <ThemeSwitcher />
-          </Suspense>
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>

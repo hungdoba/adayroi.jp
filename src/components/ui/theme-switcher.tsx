@@ -1,30 +1,40 @@
 'use client';
-
-import { cn } from '@/utils/cn';
-import { Cloud, Moon, Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useState, useEffect } from 'react';
 
-export default function ThemeSwitcher() {
-  const [mounted, setMounted] = useState(false);
-  const { setTheme, resolvedTheme } = useTheme();
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useTranslations } from 'next-intl';
 
-  useEffect(() => setMounted(true), []);
-
-  function handleChangeTheme(): void {
-    if (resolvedTheme === 'dark') {
-      setTheme('light');
-      return;
-    }
-    setTheme('dark');
-  }
+export function ThemeSwitcher() {
+  const { setTheme } = useTheme();
+  const t = useTranslations('ThemeSwitcher');
 
   return (
-    <div
-      className={cn('p-4 pr-0 hover:cursor-pointer')}
-      onClick={handleChangeTheme}
-    >
-      {!mounted ? <Cloud /> : resolvedTheme === 'dark' ? <Moon /> : <Sun />}
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger className="ml-4" asChild>
+        <Button variant="ghost" size="icon">
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme('light')}>
+          {t('light')}
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>
+          {t('dark')}
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')}>
+          {t('system')}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

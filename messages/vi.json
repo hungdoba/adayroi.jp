@@ -121,5 +121,10 @@
     "title": "Có gì đó thiếu",
     "message": "Chúng tôi xin lỗi, nhưng trang bạn đang tìm kiếm có thể đã bị xóa, đổi tên hoặc tạm thời không có sẵn.",
     "button": "Quay lại trang chủ"
+  },
+  "ThemeSwitcher": {
+    "dark": "Tối",
+    "light": "Sáng",
+    "system": "Hệ thống"
   }
 }

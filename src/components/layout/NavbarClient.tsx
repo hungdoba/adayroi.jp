@@ -5,9 +5,9 @@ import { Link, usePathname } from '@/i18n/routing';
 import { NavbarMenuItem } from '../../types/MenuItem';
 import { Session } from 'next-auth';
 import { cn } from '@/utils/cn';
-import ThemeSwitcher from '@/components/ui/theme-switcher';
 import LocaleSwitcher from '@/components/ui/locale-switcher';
 import { DropdownMenuUser } from '../ui/dropdown-user-menu';
+import { ThemeSwitcher } from '../ui/theme-switcher';
 
 interface Props {
   menuItems: NavbarMenuItem[];
@@ -108,7 +108,6 @@ export default function NavbarClient({ menuItems, session }: Props) {
             </div>
 
             <DropdownMenuUser session={session} />
-            {/* <SelectUserMenu session={session} /> */}
           </div>
         </div>
 
