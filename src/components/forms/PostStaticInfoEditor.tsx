@@ -29,7 +29,7 @@ const PostStaticInfoEditor: React.FC<Props> = ({
   postStatic,
   onChange,
 }) => {
-  const { slug, headerImage, category, tags, visible } = postStatic;
+  const { slug, headerImage, tags, visible } = postStatic;
   const [deleteSuccess, SetDeleteSuccess] = useState<true | false | null>(null);
 
   const categoryOptions: MenuItem[] = categories
