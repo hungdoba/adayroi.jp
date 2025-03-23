@@ -5,9 +5,9 @@ import { Link, usePathname } from '@/i18n/routing';
 import { NavbarMenuItem } from '../../types/MenuItem';
 import { Session } from 'next-auth';
 import { cn } from '@/utils/cn';
-import LocaleSwitcher from '@/components/ui/locale-switcher';
 import { DropdownMenuUser } from '../ui/dropdown-user-menu';
 import { ThemeSwitcher } from '../ui/theme-switcher';
+import { SelectLocale } from '../ui/select-locale';
 
 interface Props {
   menuItems: NavbarMenuItem[];
@@ -40,7 +40,7 @@ export default function NavbarClient({ menuItems, session }: Props) {
 
           {/* Hamburger button */}
           <div className="relative flex items-center md:hidden max-h-10">
-            <LocaleSwitcher />
+            <SelectLocale />
             <ThemeSwitcher />
             <label
               aria-label="hamburger"
@@ -113,7 +113,7 @@ export default function NavbarClient({ menuItems, session }: Props) {
 
         {/* Locale and Theme switchers */}
         <div className="hidden md:flex md:flex-row md:items-center">
-          <LocaleSwitcher />
+          <SelectLocale />
           <ThemeSwitcher />
         </div>
       </div>

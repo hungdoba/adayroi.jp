@@ -6,7 +6,8 @@
   "LocaleSwitcher": {
     "label": "Đổi ngôn ngữ",
     "locale": "{locale, select, vi {Tiếng Việt} ja {日本語} en {English} other {Unknown}}",
-    "icon": "{locale, select, vi {/flags/vi.svg} ja {/flags/ja.svg} en {/flags/en.svg} other {/flags/unknown.svg}}"
+    "icon": "{locale, select, vi {/flags/vi.svg} ja {/flags/ja.svg} en {/flags/en.svg} other {/flags/unknown.svg}}",
+    "changing": "..."
   },
   "PostList": {
     "readMore": "Đọc toàn bộ bài viết này"

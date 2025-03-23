@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Suspense } from 'react';
 import { useTranslations } from 'next-intl';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 

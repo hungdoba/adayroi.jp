@@ -3,13 +3,20 @@ import { ChangeEvent, useState } from 'react';
 import { post_category } from '@prisma/client';
 import { PostStatic } from '@/types/Post';
 import { MenuItem } from '@/types/MenuItem';
-import { Locale } from '@/i18n/routing';
+import { Locale, routing } from '@/i18n/routing';
 import { deleteImage, uploadImage } from '@/actions/image';
 import { cn } from '@/utils/cn';
 import { toast } from 'sonner';
-import LocaleList from '../ui/locale-list';
 import { CloudUpload, Trash2 } from 'lucide-react';
-import Dropdown from '../ui/dropdown';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface Props {
   categories: post_category[];
@@ -114,10 +121,26 @@ const PostStaticInfoEditor: React.FC<Props> = ({
     onChange({ ...postStatic, language: locale });
   }
 
+  const t = useTranslations('LocaleSwitcher');
+  const locale = useLocale();
+
   return (
     <form className="mx-auto md:mr-4">
       <div className="relative w-full mb-5 group z-10">
-        <LocaleList onLocaleChange={handleLocaleChange} />
+        <Select onValueChange={handleLocaleChange}>
+          <SelectTrigger className="ring-0 border-0 focus-visible:ring-offset-0 focus-visible:ring-0">
+            <SelectValue placeholder={t('locale', { locale })} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {routing.locales.map((locale: Locale) => (
+                <SelectItem key={locale} value={locale}>
+                  {t('locale', { locale })}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
       <div className="relative w-full mb-5 group">
         <input
@@ -182,11 +205,20 @@ const PostStaticInfoEditor: React.FC<Props> = ({
       </div>
       <div className="relative w-full mb-5 group z-10">
         <div className="z-10 py-4">
-          <Dropdown
-            menuItems={categoryOptions}
-            onSelect={handleCategoryChange}
-            defaultSelected={category}
-          />
+          <Select onValueChange={handleCategoryChange}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {categoryOptions.map((category) => (
+                  <SelectItem key={category.value} value={category.value}>
+                    {category.label}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
         <label
           htmlFor="floating_category"

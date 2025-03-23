@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 import { Session } from 'next-auth';
-import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ButtonSignOut } from './button-signout';
@@ -20,10 +19,6 @@ interface Props {
 
 export function DropdownMenuUser({ session }: Props) {
   const t = useTranslations('Navbar');
-  function gotoChangePasswordPage(): void {}
-
-  function gotoAdminPage(): void {}
-
   return session ? (
     <DropdownMenu>
       <DropdownMenuTrigger
