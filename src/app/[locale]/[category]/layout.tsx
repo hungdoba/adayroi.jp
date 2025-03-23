@@ -11,7 +11,7 @@ type Props = {
 export default async function Home({ params, children }: Props) {
   const { locale } = await params;
   return (
-    <div className="mx-auto min-h-screen flex flex-col">
+    <div className="md:max-w-screen-lg mx-auto min-h-screen flex flex-col">
       <Navbar locale={locale} />
       <main className="flex-grow flex">{children}</main>
       <Footer />

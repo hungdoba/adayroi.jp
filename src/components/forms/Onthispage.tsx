@@ -41,7 +41,7 @@ const Onthispage = ({
     <div className={cn('md:block ', className)}>
       {links?.length != 0 && (
         <div className="sticky top-10">
-          <ul className="not-prose text-xs">
+          <ul className="not-prose md:text-xs">
             {links &&
               links.map((link) => {
                 return (

@@ -89,7 +89,7 @@ export default function NavbarClient({ menuItems, session }: Props) {
         >
           <div className="md:flex md:flex-row md:items-center">
             {/* Menu options */}
-            <div className="text-gray-600 dark:text-gray-300 md:pr-4 md:w-auto w-full md:pt-0">
+            <div className="text-gray-600 dark:text-gray-300 md:pr-4 md:w-auto md:pt-0 mb-4 md:mb-0">
               <ul className="tracking-wide font-medium md:text-sm flex-col flex md:flex-row gap-6 md:gap-0">
                 {menuItems.map((item, index) => (
                   <li key={index}>
@@ -107,7 +107,9 @@ export default function NavbarClient({ menuItems, session }: Props) {
               </ul>
             </div>
 
-            <DropdownMenuUser session={session} />
+            <div className="flex justify-center">
+              <DropdownMenuUser session={session} />
+            </div>
           </div>
         </div>
 

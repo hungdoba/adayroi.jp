@@ -71,7 +71,7 @@ export default async function FullPost({ params }: Props) {
           />
         </div>
 
-        <div className="w-full md:w-1/4 bg-red-400">
+        <div className="w-full md:w-1/4">
           <TableOfContentClient isAdmin={admin != false} slug={slug}>
             <Onthispage
               className="text-sm w-[100%]"

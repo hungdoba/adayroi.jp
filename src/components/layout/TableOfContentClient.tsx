@@ -38,7 +38,7 @@ export default function TableOfContentClient({
 
       <div
         className={cn(
-          'z-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white dark:bg-slate-800',
+          'z-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 md:relative justify-center items-center w-full h-full max-h-full bg-white dark:bg-gray-900',
           !visible && 'hidden md:block'
         )}
       >
@@ -74,7 +74,7 @@ export default function TableOfContentClient({
                   </div>
                 </div>
               </div>
-              <div className="ml-4">
+              <div className="md:hidden ml-4">
                 <X onClick={() => setVisible(!visible)} />
               </div>
             </div>

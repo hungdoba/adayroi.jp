@@ -21,10 +21,7 @@ export function DropdownMenuUser({ session }: Props) {
   const t = useTranslations('Navbar');
   return session ? (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        className="ring-0 border-0 focus-visible:ring-offset-0 focus-visible:ring-0"
-        asChild
-      >
+      <DropdownMenuTrigger asChild>
         <Button variant="ghost">
           {session?.user?.name}
           <ChevronDown />
@@ -48,7 +45,7 @@ export function DropdownMenuUser({ session }: Props) {
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
-    <Button variant="link">
+    <Button className="pl-0" variant="link">
       <Link href={`/signin`}>{t('signIn')}</Link>
     </Button>
   );
