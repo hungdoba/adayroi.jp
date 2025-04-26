@@ -39,17 +39,23 @@ export function SelectLocale() {
           {isPending ? t('changing') : t('locale', { locale })}
         </SelectValue>
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-white dark:bg-gray-900">
         <SelectGroup>
-          {routing.locales.map((loc: Locale) => (
-            <SelectItem
-              key={loc}
-              value={loc}
-              disabled={isPending || loc === locale}
-            >
-              {t('locale', { locale: loc })}
-            </SelectItem>
-          ))}
+          <SelectItem value={locale} disabled>
+            {t('locale', { locale: locale })}
+          </SelectItem>
+          {routing.locales.map(
+            (loc: Locale) =>
+              loc !== locale && (
+                <SelectItem
+                  key={loc}
+                  value={loc}
+                  disabled={isPending || loc === locale}
+                >
+                  {t('locale', { locale: loc })}
+                </SelectItem>
+              )
+          )}
         </SelectGroup>
       </SelectContent>
     </Select>
