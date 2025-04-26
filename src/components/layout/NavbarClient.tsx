@@ -8,6 +8,7 @@ import { cn } from '@/utils/cn';
 import { DropdownMenuUser } from '../ui/dropdown-user-menu';
 import { ThemeSwitcher } from '../ui/theme-switcher';
 import { SelectLocale } from '../ui/select-locale';
+import { useTheme } from 'next-themes';
 
 interface Props {
   menuItems: NavbarMenuItem[];
@@ -17,6 +18,7 @@ interface Props {
 export default function NavbarClient({ menuItems, session }: Props) {
   const currentPath = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -29,7 +31,9 @@ export default function NavbarClient({ menuItems, session }: Props) {
           {/* Logo */}
           <Link href="/" aria-label="logo" className="flex items-center">
             <Image
-              src="/logos/logo-dark.png"
+              src={
+                theme === 'dark' ? '/logos/logo-dark.png' : '/logos/logo.png'
+              }
               priority
               width={430}
               height={148}
